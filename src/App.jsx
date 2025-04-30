@@ -6,12 +6,18 @@ import ContactForm from "./sections/ContactForm.jsx";
 import Enviromatics from "./sections/Enviromatics.jsx";
 import Hero from "./sections/Hero.jsx";
 import Typography from "./sections/Typography.jsx";
-import { useEffect, useState } from "react";
-import ImageZoom from "./sections/ImageZoom/ImageZoom.jsx";
+import { useEffect, useRef, useState } from "react";
 import LeadershipTestimonial from "./sections/Leadership.jsx";
+import ImageZoom from "./sections/ImageZoom.jsx";
 
 function App() {
   const [showFixedButtons, setShowFixedButtons] = useState(true);
+
+  const formRef = useRef(null);
+
+  const scrollToSection = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const lenis = new Lenis({
     autoRaf: true,
@@ -23,13 +29,13 @@ function App() {
 
   return (
     <>
-      <Navbar toggleButtons={() => setShowFixedButtons((prev) => !prev)} />
+      <Navbar toggleButtons={() => setShowFixedButtons((prev) => !prev)} scrollToSection={scrollToSection} />
       <Hero showButtons={showFixedButtons} />
       <Typography />
-      {/* <ImageZoom/> */}
+      <ImageZoom/>
       <Enviromatics />
       <LeadershipTestimonial />
-      <ContactForm />
+      <ContactForm formRef={formRef} />
       <Footer />
     </>
   );

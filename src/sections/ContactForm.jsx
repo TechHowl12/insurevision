@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import dropdownpng from '../assets/dropdown.png'
 
-const ContactForm = () => {
+const ContactForm = ({formRef}) => {
   const [selectedOption, setSelectedOption] = useState('AN INSURANCE COMPANY');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
@@ -33,7 +33,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="w-full flex items-center justify-center p-4 lg:p-8" style={{ backgroundColor: '#0E000B' }}>
+    <div ref={formRef} className="w-full flex items-center justify-center p-4 lg:p-8" style={{ backgroundColor: '#0E000B' }}>
       <div className="w-full sm:w-10/12 flex flex-col lg:flex-row items-center gap-8 lg:gap-16 py-8 lg:py-12">
         {/* Left Section */}
         <div className="w-full text-left lg:px-0 px-auto">

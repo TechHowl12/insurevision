@@ -24,8 +24,7 @@ const Hero = ({ showButtons }) => {
   return (
     <div className="hero">
       <section className="relative text-white">
-        <img className="hidden md:block absolute z-50" src={Lines} />
-
+      <img className="hidden md:inline absolute z-10 pointer-events-none" src={Lines} />
         {/* Fixed Left Buttons */}
         <div
           className={`fixed bottom-20 md:bottom-6 flex gap-3 z-50 transition-all duration-500
