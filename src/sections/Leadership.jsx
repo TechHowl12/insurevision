@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import arrrowupimg from "../assets/arrowup.png"
-import arrowdownimg from "../assets/arrowdown.png"
+import arrrowupimg from "../assets/arrowup.png";
+import arrowdownimg from "../assets/arrowdown.png";
 
 // Only register the plugin once to avoid conflicts
 if (typeof window !== "undefined") {
@@ -122,7 +122,7 @@ export default function LeadershipTestimonial(){
           id: "leadership-scrolltrigger-mobile",
           trigger: section,
           start: "top top",
-          end: "+=200%", // Less scroll space on mobile
+          end: "+=150%", // Less scroll space on mobile
           pin: true,
           pinSpacing: true,
           scrub: 1, // Smoother for touch devices

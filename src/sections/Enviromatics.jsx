@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Arrow from "../assets/arrowdown.png";
 
 const stepDetails = [
   {
@@ -156,7 +157,7 @@ const Enviromatics = () => {
               setConnectorProgress(0);
             }}
           >
-            ◀
+            <img className="rotate-90" src={Arrow}/>
           </button>
           <button
             className="sm:hidden px-2"
@@ -167,7 +168,7 @@ const Enviromatics = () => {
               setConnectorProgress(0);
             }}
           >
-            ▶
+            <img className="-rotate-90"  src={Arrow}/>
           </button>
         </div>
       </div>

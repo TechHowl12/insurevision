@@ -14,7 +14,7 @@ function App() {
   const [showFixedButtons, setShowFixedButtons] = useState(true);
 
   useEffect(() => {
-    const isDesktop = window.innerWidth >= 768; // Tailwind's md breakpoint
+    const isDesktop = window.innerWidth >= 768; 
     setShowFixedButtons(isDesktop);
   }, []);
 
