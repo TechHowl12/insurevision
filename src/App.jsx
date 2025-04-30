@@ -13,10 +13,15 @@ import ImageZoom from "./sections/ImageZoom.jsx";
 function App() {
   const [showFixedButtons, setShowFixedButtons] = useState(true);
 
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 768; // Tailwind's md breakpoint
+    setShowFixedButtons(isDesktop);
+  }, []);
+
   const formRef = useRef(null);
 
   const scrollToSection = () => {
-    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const lenis = new Lenis({
@@ -29,10 +34,13 @@ function App() {
 
   return (
     <>
-      <Navbar toggleButtons={() => setShowFixedButtons((prev) => !prev)} scrollToSection={scrollToSection} />
+      <Navbar
+        toggleButtons={() => setShowFixedButtons((prev) => !prev)}
+        scrollToSection={scrollToSection}
+      />
       <Hero showButtons={showFixedButtons} />
       <Typography />
-      <ImageZoom/>
+      <ImageZoom />
       <Enviromatics />
       <LeadershipTestimonial />
       <ContactForm formRef={formRef} />
