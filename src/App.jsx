@@ -11,21 +11,7 @@ import ImageZoom from "./sections/ImageZoom/ImageZoom.jsx";
 import LeadershipTestimonial from "./sections/Leadership.jsx";
 
 function App() {
-  const [showFixedButtons, setShowFixedButtons] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth >= 768; // example breakpoint: 768px for tablets and up
-    }
-    return true; // default to true if window is undefined (e.g. SSR)
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setShowFixedButtons(window.innerWidth >= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const [showFixedButtons, setShowFixedButtons] = useState(true);
 
   const lenis = new Lenis({
     autoRaf: true,
