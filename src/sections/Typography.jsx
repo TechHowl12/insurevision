@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Down from "../assets/down-line.png";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,7 +53,6 @@ like humans`;
           </span>
         ))}
       </h1>
-       <img className="relative mb-2 left-1/2 transform -translate-x-1/2 h-36 md:h-56" src={Down} />
     </div>
   );
 };

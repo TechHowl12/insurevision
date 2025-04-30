@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Placeholderimg from '../assets/placeholder.png'
-import roadrimg from '../assets/roadImg.png'
+import roadrimg from '../assets/roadImg.png';
+import Down from "../assets/down-line.png";
 
 // Only register the plugin once to avoid conflicts
 if (typeof window !== "undefined") {
@@ -240,12 +241,13 @@ const ImageZoom = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen flex items-center justify-center py-5 overflow-hidden bg-black"
+      className="min-h-screen overflow-visible flex items-center justify-center py-5 mb-[15%] bg-[#0E000b]"
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
           <div className="w-full">
-            <h1 className="text-white text-center mb-5 md:mb-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+          <img className="relative mb-2 left-1/2 transform -translate-x-1/2 h-36 md:h-56" src={Down} />
+            <h1 className="text-white text-center mb-5 md:mb-10 text-3xl sm:text-4xl md:text-5xl">
               How will we ensure your Safety?
             </h1>
             <div className="text-center relative">

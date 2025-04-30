@@ -351,7 +351,7 @@ export default function LeadershipTestimonial(){
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen w-full md:w-10/12 flex items-center justify-center bg-black text-white relative overflow-hidden mx-auto"
+      className="min-h-screen w-full md:w-10/12 flex items-center justify-center bg-[#0E000b] text-white relative overflow-hidden mx-auto"
     >
       <div 
         ref={containerRef}
