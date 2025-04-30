@@ -67,7 +67,7 @@ const Enviromatics = () => {
   const currentStep = stepDetails[activeButton];
 
   return (
-    <div className="text-white w-full h-auto md:h-screen px-4 md:px-[10%] py-10">
+    <div className="text-white w-full h-auto md:h-screen px-4 md:px-[10%] py-0 md:py-16">
       {/* Intro Section */}
       <div>
         <h3 className="text-sm uppercase text-center tracking-widest font-bold">
@@ -87,7 +87,7 @@ const Enviromatics = () => {
       {/* Progress Buttons */}
       <div
         ref={sectionRef}
-        className="flex flex-col sm:flex-row mt-7 gap-x-0 sm:gap-y-0 w-full xl:w-10/12 mx-auto"
+        className="flex flex-col mt-7 sm:flex-row gap-x-0 sm:gap-y-0 w-full xl:w-10/12 mx-auto"
       >
         {stepDetails.map((step, index) => (
           <div key={index} className="relative items-center flex-1 flex">

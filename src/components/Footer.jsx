@@ -8,7 +8,9 @@ const Footer = () => {
         <div className="flex flex-col p-4 md:flex-row justify-between items-start md:items-center gap-6 md:gap-4">
           {/* Logo and Address */}
           <div className="flex items-start sm:flex-row flex-col md:gap-20 gap-6">
-            <h2 className="text-white text-xl font-semibold tracking-wide">INSUREVISION</h2>
+          <h1 className="uppercase font-thin text-white text-center text-lg">
+          insure<span className="font-bold">vision</span>
+        </h1>
             <div className="text-left">
               <h3 className="text-gray-400 text-sm font-medium mb-2">OFFICE ADDRESS</h3>
               <p className="text-gray-300 text-sm">
@@ -24,7 +26,7 @@ const Footer = () => {
     <a
       key={label}
       href="#"
-      className="px-4 py-2 rounded-full text-sm border border-[#B94C99] text-white hover:bg-[#B94C99]/20 transition-colors"
+      className="px-4 py-2 rounded-full text-xs border border-[#B94C99] text-white hover:bg-[#B94C99]/20 transition-colors"
     >
       {label}
     </a>
