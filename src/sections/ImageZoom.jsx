@@ -61,7 +61,7 @@ const ImageZoom = () => {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=2500", 
+          end: "+=2500",
           scrub: 0.5,
           pin: true,
           markers: false,
@@ -157,7 +157,7 @@ const ImageZoom = () => {
           trigger: section,
           start: "top top",
           end: "+=3000",
-          scrub: 0.8,
+          scrub: 0.5,
           pin: true,
           markers: false,
           id: "image-zoom-trigger-desktop"
@@ -241,7 +241,7 @@ const ImageZoom = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="min-h-screen overflow-visible flex items-center justify-center py-5 mb-[15%] bg-[#0E000b]"
+      className="h-[60vh] md:min-h-screen overflow-visible flex items-center justify-center py-5 mb-[15%] bg-[#0E000b]"
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
