@@ -335,7 +335,7 @@ const ImageZoom = () => {
                           have.
                         </p>
                       </div>
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-mr-6 md:-mr-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
+                      <div className="z-40 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-mr-6 md:-mr-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
                         <span>3</span>
                       </div>
                     </div>

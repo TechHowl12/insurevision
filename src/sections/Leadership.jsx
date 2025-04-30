@@ -315,7 +315,7 @@ export default function LeadershipTestimonial(){
             if (!ScrollTrigger.isScrolling()) {
               setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1));
             }
-          }, 2000); // Change every 2 seconds
+          }, 5000); // Change every 2 seconds
         } else {
           // Clear interval when section is not visible
           clearInterval(interval);
@@ -351,7 +351,7 @@ export default function LeadershipTestimonial(){
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen w-full flex items-center justify-center bg-black text-white relative overflow-hidden"
+      className="h-screen w-full md:w-10/12 flex items-center justify-center bg-black text-white relative overflow-hidden mx-auto"
     >
       <div 
         ref={containerRef}
@@ -360,12 +360,12 @@ export default function LeadershipTestimonial(){
       >
         {/* Left side - Title and Bio */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center z-10 px-2 md:px-8">
-          <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-wider mb-6 md:mb-16">LEADERSHIP</h1>
+          <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider mt-6 md:mt-16">LEADERSHIP</h1>
 
           {/* Bio with border box that's attached to the image */}
-          <div className="bio-container w-full mt-6 md:mt-16 ml-2 md:ml-8 flex justify-end">
-            <div className="bio-box relative p-4 sm:p-8 md:p-14 border-t border-l border-b border-[#B94C99] text-right w-full ml-2 md:ml-4">
-              <p className="bio-text text-xs text-left sm:text-sm md:text-base text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+          <div className="bio-container w-full mt-6 ml-2 md:ml-16 flex justify-end">
+            <div className="bio-box relative py-4 pl-6 pr-2 border-t border-l border-b border-[#B94C99] text-right w-full ml-2 md:ml-4">
+              <p className="bio-text text-xs text-left sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
             </div>
           </div>
         </div>
@@ -377,7 +377,7 @@ export default function LeadershipTestimonial(){
             <img
               src={smallProfiles[0].image || "/placeholder.svg"}
               alt="Team member"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
               key={`small-top-${activeMember}`}
             />
           </div>
@@ -387,7 +387,7 @@ export default function LeadershipTestimonial(){
             <img
               src={smallProfiles[1].image || "/placeholder.svg"}
               alt="Team member"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
               key={`small-middle-${activeMember}`}
             />
           </div>
@@ -410,7 +410,7 @@ export default function LeadershipTestimonial(){
             <img
               src={smallProfiles[2].image || "/placeholder.svg"}
               alt="Team member"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
               key={`small-bottom-${activeMember}`}
             />
           </div>
