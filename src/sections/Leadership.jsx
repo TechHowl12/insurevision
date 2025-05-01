@@ -355,133 +355,263 @@ export default function LeadershipTestimonial(){
     >
       <div 
         ref={containerRef}
-        className="container mx-auto px-4 py-8  flex flex-col md:flex-row items-center justify-between relative"
+        className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between relative"
         style={{ opacity: 1, visibility: "visible" }}
       >
-        {/* Left side - Title and Bio */}
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center z-10 px-2 md:px-8">
-          <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider mt-6 md:mt-16">LEADERSHIP</h1>
-
-          {/* Bio with border box that's attached to the image */}
-          <div className="bio-container w-full mt-6 ml-2 md:ml-16 flex justify-end">
-            <div className="bio-box relative py-4 pl-6 pr-2 border-t border-l border-b border-[#B94C99] text-right w-full ml-2 md:ml-4">
-              <p className="bio-text text-xs text-left sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+        {/* Mobile layout adjustment - reordering content */}
+        <div className="w-full flex flex-col md:hidden items-center justify-center mb-4">
+          {/* Mobile title */}
+          <h1 className="leadership-title text-3xl font-bold tracking-wider mt-2 mb-3">LEADERSHIP</h1>
+          
+          {/* Bio text first on mobile */}
+          <div className="bio-container w-full mt-2 mb-4">
+            <div className="bio-box relative py-3 px-4 border border-[#B94C99] w-full">
+              <p className="bio-text text-xs text-center text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
             </div>
           </div>
-        </div>
-
-        {/* Center - Profile Images */}
-        <div className={`w-full flex flex-col items-${isMobile ? 'center md:items-start' : 'start'} justify-center relative my-6 md:my-0`}>
-          {/* Small profile image top */}
-          <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
-            <img
-              src={smallProfiles[0].image || "/placeholder.svg"}
-              alt="Team member"
-              className="w-full h-full object-cover grayscale"
-              key={`small-top-${activeMember}`}
-            />
-          </div>
-
-          {/* Small profile image middle-top */}
-          <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
-            <img
-              src={smallProfiles[1].image || "/placeholder.svg"}
-              alt="Team member"
-              className="w-full h-full object-cover grayscale"
-              key={`small-middle-${activeMember}`}
-            />
-          </div>
-
-          {/* Main profile image */}
-          <div className="main-profile relative mb-3 md:mb-6">
-            <div className="absolute inset-1 border-r-4 border-b-4 border-[#B94C99] transform translate-x-2 translate-y-2"></div>
-            <div className="w-48 sm:w-64 md:w-78 h-48 sm:h-64 md:h-76 overflow-hidden">
-              <img
-                src={currentMember.image || "/placeholder.svg"}
-                alt={currentMember.name}
-                className="w-full h-full object-cover"
-                key={`main-${activeMember}`}
-              />
+          
+          {/* Compact images area */}
+          <div className="flex justify-center items-center space-x-2 mb-4">
+            <div className="flex flex-col space-y-2">
+              {/* Small images on the side */}
+              <div className="profile-image w-12 h-16 overflow-hidden">
+                <img
+                  src={smallProfiles[0].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale"
+                  key={`small-mobile-1-${activeMember}`}
+                />
+              </div>
+              <div className="profile-image w-12 h-16 overflow-hidden">
+                <img
+                  src={smallProfiles[1].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale"
+                  key={`small-mobile-2-${activeMember}`}
+                />
+              </div>
+            </div>
+            
+            {/* Main profile image */}
+            <div className="main-profile relative">
+              <div className="absolute inset-1 border-r-2 border-b-2 border-[#B94C99] transform translate-x-1 translate-y-1"></div>
+              <div className="w-40 h-40 overflow-hidden">
+                <img
+                  src={currentMember.image || "/placeholder.svg"}
+                  alt={currentMember.name}
+                  className="w-full h-full object-cover"
+                  key={`main-mobile-${activeMember}`}
+                />
+              </div>
+            </div>
+            
+            <div className="flex flex-col space-y-2">
+              {/* Small images on the other side */}
+              <div className="profile-image w-12 h-16 overflow-hidden">
+                <img
+                  src={smallProfiles[2].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale"
+                  key={`small-mobile-3-${activeMember}`}
+                />
+              </div>
+              
+              {/* Vertical arrows for mobile - moved to the side */}
+              <div className="flex flex-col space-y-2">
+                <button
+                  className="text-gray-400 hover:text-white transition-colors"
+                  onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
+                >
+                  <img
+                    src={arrrowupimg}
+                    alt="Previous member"
+                    className="h-4 w-1.5"
+                  />
+                </button>
+                <button
+                  className="text-gray-400 hover:text-white transition-colors"
+                  onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
+                >
+                  <img
+                    src={arrowdownimg}
+                    alt="Next member"
+                    className="h-4 w-1.5"
+                  />
+                </button>
+              </div>
             </div>
           </div>
-
-          {/* Small profile image bottom */}
-          <div className="profile-image w-16 md:w-24 h-20 md:h-32 overflow-hidden">
-            <img
-              src={smallProfiles[2].image || "/placeholder.svg"}
-              alt="Team member"
-              className="w-full h-full object-cover grayscale"
-              key={`small-bottom-${activeMember}`}
-            />
+          
+          {/* Name and title */}
+          <div className="name-title text-center mt-1 mb-2" key={`name-mobile-${activeMember}`}>
+            <div className="text-xs text-[#B94C99] mb-1">MEET</div>
+            <h2 className="text-2xl font-bold">{currentMember.name}</h2>
+            <div className="mt-1 text-xs text-gray-400">{currentMember.title}</div>
           </div>
-        </div>
-
-        {/* Right side - Name, Title, Social */}
-        <div className="w-full flex flex-col ml-[2%] lg:mr[5%] items-center md:items-start justify-center z-10">
-          <div className="name-title text-center md:text-left mt-6 md:mt-56 mb-4 md:mb-8" key={`name-${activeMember}`}>
-            <div className="text-xs md:text-sm text-[#B94C99] mb-1 md:mb-2">MEET</div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
-            <div className="mt-2 md:mt-4 text-xs md:text-sm text-gray-400">{currentMember.title}</div>
-          </div>
-
+          
           {/* Social icons */}
-          <div className="social-icons flex space-x-4 mb-4 md:mb-6">
+          <div className="social-icons flex space-x-4 mb-2">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Facebook size={isMobile ? 16 : 18} />
+              <Facebook size={16} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Linkedin size={isMobile ? 16 : 18} />
+              <Linkedin size={16} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Instagram size={isMobile ? 16 : 18} />
+              <Instagram size={16} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter size={isMobile ? 16 : 18} />
+              <Twitter size={16} />
             </a>
           </div>
-
-          {/* Pagination - Now below social icons */}
-          <div className="w-32 md:w-40 h-8 md:h-10 flex space-x-2 mt-2 md:mt-4 mb-4 md:mb-8 z-20">
+          
+          {/* Pagination */}
+          <div className="w-full flex justify-center space-x-2 mt-2 mb-2">
             {teamMembers && teamMembers.length > 0 ? (
               teamMembers.map((member) => (
                 <button
-                  key={member.id}
+                  key={`pagination-mobile-${member.id}`}
                   onClick={() => handlePagination(member.id)}
-                  className={`w-8 md:w-10 h-8 md:h-10 border ${
+                  className={`w-6 h-6 border ${
                     activeMember === member.id ? 'border-[#B94C99] text-[#B94C99]' : 'border-gray-700 text-gray-700'
-                  } flex items-center justify-center hover:border-[#B94C99] hover:text-[#B94C99] transition-colors text-xs md:text-sm`}
+                  } flex items-center justify-center hover:border-[#B94C99] hover:text-[#B94C99] transition-colors text-xs`}
                 >
                   {member.id || "N/A"}
                 </button>
               ))
             ) : (
-              <div className="text-gray-400 text-xs md:text-sm">No team members to display</div>
+              <div className="text-gray-400 text-xs">No team members to display</div>
             )}
           </div>
+        </div>
 
-          {/* Vertical arrows - Now positioned to the right */}
-          <div className={`arrows absolute ${isMobile ? 'right-4 top-1/2' : 'right-8 top-1/2'} transform -translate-y-1/2 flex flex-col items-center space-y-6 md:space-y-12`}>
-            <button
-              className="text-gray-400 hover:text-white transition-colors"
-              onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
-            >
+        {/* Original desktop layout - hide on mobile */}
+        <div className="hidden md:flex md:flex-row md:w-full items-center justify-between">
+          {/* Left side - Title and Bio */}
+          <div className="w-full md:w-1/2 flex flex-col items-center justify-center z-10 px-2 md:px-8">
+            <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider mt-6 md:mt-16">LEADERSHIP</h1>
+
+            {/* Bio with border box that's attached to the image */}
+            <div className="bio-container w-full mt-6 ml-2 md:ml-16 flex justify-end">
+              <div className="bio-box relative py-4 pl-6 pr-2 border-t border-l border-b border-[#B94C99] text-right w-full ml-2 md:ml-4">
+                <p className="bio-text text-xs text-left sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Center - Profile Images */}
+          <div className="w-full flex flex-col items-start justify-center relative my-6 md:my-0">
+            {/* Small profile image top */}
+            <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
               <img
-                src={arrrowupimg}
-                alt="Previous member"
-                className={`${isMobile ? 'h-6 w-1.5' : 'h-8 w-2'}`}
+                src={smallProfiles[0].image || "/placeholder.svg"}
+                alt="Team member"
+                className="w-full h-full object-cover grayscale"
+                key={`small-top-${activeMember}`}
               />
-            </button>
-            <button
-              className="text-gray-400 hover:text-white transition-colors"
-              onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
-            >
+            </div>
+
+            {/* Small profile image middle-top */}
+            <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
               <img
-                src={arrowdownimg}
-                alt="Next member"
-                className={`${isMobile ? 'h-6 w-1.5' : 'h-8 w-2'}`}
+                src={smallProfiles[1].image || "/placeholder.svg"}
+                alt="Team member"
+                className="w-full h-full object-cover grayscale"
+                key={`small-middle-${activeMember}`}
               />
-            </button>
+            </div>
+
+            {/* Main profile image */}
+            <div className="main-profile relative mb-3 md:mb-6">
+              <div className="absolute inset-1 border-r-4 border-b-4 border-[#B94C99] transform translate-x-2 translate-y-2"></div>
+              <div className="w-48 sm:w-64 md:w-78 h-48 sm:h-64 md:h-76 overflow-hidden">
+                <img
+                  src={currentMember.image || "/placeholder.svg"}
+                  alt={currentMember.name}
+                  className="w-full h-full object-cover"
+                  key={`main-${activeMember}`}
+                />
+              </div>
+            </div>
+
+            {/* Small profile image bottom */}
+            <div className="profile-image w-16 md:w-24 h-20 md:h-32 overflow-hidden">
+              <img
+                src={smallProfiles[2].image || "/placeholder.svg"}
+                alt="Team member"
+                className="w-full h-full object-cover grayscale"
+                key={`small-bottom-${activeMember}`}
+              />
+            </div>
+          </div>
+
+          {/* Right side - Name, Title, Social */}
+          <div className="w-full flex flex-col ml-[2%] lg:mr[5%] items-center md:items-start justify-center z-10">
+            <div className="name-title text-center md:text-left mt-6 md:mt-56 mb-4 md:mb-8" key={`name-${activeMember}`}>
+              <div className="text-xs md:text-sm text-[#B94C99] mb-1 md:mb-2">MEET</div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
+              <div className="mt-2 md:mt-4 text-xs md:text-sm text-gray-400">{currentMember.title}</div>
+            </div>
+
+            {/* Social icons */}
+            <div className="social-icons flex space-x-4 mb-4 md:mb-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Facebook size={18} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin size={18} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Instagram size={18} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Twitter size={18} />
+              </a>
+            </div>
+
+            {/* Pagination - Now below social icons */}
+            <div className="w-32 md:w-40 h-8 md:h-10 flex space-x-2 mt-2 md:mt-4 mb-4 md:mb-8 z-20">
+              {teamMembers && teamMembers.length > 0 ? (
+                teamMembers.map((member) => (
+                  <button
+                    key={member.id}
+                    onClick={() => handlePagination(member.id)}
+                    className={`w-8 md:w-10 h-8 md:h-10 border ${
+                      activeMember === member.id ? 'border-[#B94C99] text-[#B94C99]' : 'border-gray-700 text-gray-700'
+                    } flex items-center justify-center hover:border-[#B94C99] hover:text-[#B94C99] transition-colors text-xs md:text-sm`}
+                  >
+                    {member.id || "N/A"}
+                  </button>
+                ))
+              ) : (
+                <div className="text-gray-400 text-xs md:text-sm">No team members to display</div>
+              )}
+            </div>
+
+            {/* Vertical arrows - Now positioned to the right */}
+            <div className="arrows absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
+              <button
+                className="text-gray-400 hover:text-white transition-colors"
+                onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
+              >
+                <img
+                  src={arrrowupimg}
+                  alt="Previous member"
+                  className="h-8 w-2"
+                />
+              </button>
+              <button
+                className="text-gray-400 hover:text-white transition-colors"
+                onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
+              >
+                <img
+                  src={arrowdownimg}
+                  alt="Next member"
+                  className="h-8 w-2"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
