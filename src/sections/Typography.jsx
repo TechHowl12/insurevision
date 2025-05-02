@@ -9,7 +9,7 @@ const Typography = () => {
   const containerRef = useRef(null);
 
   const text = `Humans drive cars and understand risk with our eyes, not gps and
-acerometer data. We focus our attention on danger rather than on
+accelerometer data. We focus our attention on danger rather than on
 counting and classifying road objects. Our understanding is based on our
 experience as drivers... InsureVision analyses risk contextually just
 like humans`;

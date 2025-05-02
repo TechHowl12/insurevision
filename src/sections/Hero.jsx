@@ -70,11 +70,12 @@ const Hero = ({ showButtons }) => {
             <h1 className="text-5xl xl:text-6xl font-bold capitalize text-center">
               more context <br /> less risk
             </h1>
-            <p className="text-center opacity-75 font-light">
-              Insurevision combines video from a vehicle’s forward-facing camera
-              with a unique transformer AI model to deliver intelligent risk
-              analysis.
-            </p>
+            <p className="text-center text-[15px] md:text-[19px] md:w-full opacity-75 font-light">
+  Insurevision combines video from a vehicle’s forward-facing camera
+  <span className="hidden md:inline"><br /></span>
+  with a unique transformer AI model to deliver intelligent risk analysis.
+</p>
+
           </div>
           <div>
             <h2 className="uppercase relative text-[#b94c99] z-10 mt-2">

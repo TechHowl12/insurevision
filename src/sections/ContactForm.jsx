@@ -6,9 +6,8 @@ const ContactForm = ({formRef}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
   const options = [
-    'AN INSURANCE COMPANY',
-    'A HEALTHCARE PROVIDER',
-    'A TECHNOLOGY COMPANY',
+    'AN INSURANCE PROVIDER',
+    'A FLEET OPERATOR',
     'OTHER'
   ];
 

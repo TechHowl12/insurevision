@@ -241,7 +241,7 @@ const ImageZoom = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="h-[60vh] md:min-h-screen overflow-visible flex items-center justify-center py-5 mb-[15%] bg-[#0E000b]"
+      className="h-[60vh] min-h-screen overflow-visible flex items-center justify-center py-5 mb-[15%] bg-[#0E000b]"
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
