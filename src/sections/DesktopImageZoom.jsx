@@ -49,8 +49,8 @@ const DesktopImageZoom = () => {
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: "+=1400px",
-        scrub: 0.1,
+        end: "+=2000px",
+        scrub: 0.5,
         pin: true,
         markers: false,
       },
@@ -62,7 +62,7 @@ const DesktopImageZoom = () => {
         .to(stepRef, {
           autoAlpha: 1,
           y: 0,
-          duration: 0.8,
+          duration: 1,
           ease: "power2.out",
         })
         .addLabel(label)
@@ -122,14 +122,21 @@ const DesktopImageZoom = () => {
   }, [isMobile]);
 
   return (
-    <section
+      <section
       ref={sectionRef}
       className="h-screen overflow-visible flex items-center justify-center py-5"
     >
+      
       <div className="container mx-auto px-4">
+      <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-56" />
+          <h1 className="text-white text-3xl text-center sm:text-4xl md:text-5xl mb-5 md:mb-10">
+            How will we ensure your Safety?
+          </h1>
         <div className="flex justify-center">
           <div className="w-11/12">
+          
             <div className="text-center relative overflow-visible">
+            
               <div className="flex items-center justify-center">
                 <img
                   ref={img1Ref}

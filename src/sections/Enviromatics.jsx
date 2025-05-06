@@ -127,7 +127,7 @@ const Enviromatics = () => {
   return (
     <div 
       ref={sectionRef}
-      className="text-white w-full h-screen px-4 md:px-[10%] py-0 md:py-16 overflow-hidden"
+      className="text-white w-full h-screen px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
     >
       <div ref={containerRef} className="h-full flex flex-col">
         {/* Intro Section */}
@@ -236,7 +236,7 @@ const Enviromatics = () => {
         {/* Content Section */}
         <div className="mt-3 md:mt-7 flex flex-col sm:flex-row w-full md:w-10/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
           <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 sm:gap-y-0 justify-between py-3">
-            <h4 className="text-slate-200 md:text-sm leading-relaxed w-full sm:w-10/12 capitalize">
+            <h4 className="text-slate-200 2xl:text-[20px] md:text-sm leading-relaxed w-full sm:w-10/12 capitalize">
               {currentStep.description}
             </h4>
             <div className="flex flex-col gap-7">

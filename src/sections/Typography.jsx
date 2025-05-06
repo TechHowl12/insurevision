@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Down from "../assets/down-line.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +21,7 @@ like humans`;
     const container = containerRef.current;
     const section = sectionRef.current;
     const letters = container.querySelectorAll(".char");
-
+    
     // Clear any previous ScrollTrigger instances
     if (scrollTriggerRef.current) {
       scrollTriggerRef.current.kill();
@@ -35,7 +34,7 @@ like humans`;
     const tl = gsap.timeline({
       paused: true,
       onComplete: () => setIsAnimating(false),
-      onReverseComplete: () => setIsAnimating(false),
+      onReverseComplete: () => setIsAnimating(false)
     });
 
     // Add the color animation to the timeline
@@ -52,35 +51,20 @@ like humans`;
     // Create a unique ScrollTrigger for this section
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: section,
-      start: "top 10%",
+      start: "top top",
       end: "+=300%",
       pin: true,
       pinSpacing: true,
       id: "typography-pin", // Unique ID to avoid conflicts
       scrub: 0.5,
-      onEnter: () => {
-        setIsAnimating(true);
-        tl.play(0);
-      },
-      onLeave: () => {
-        if (tl.progress() === 1) {
-          setIsAnimating(false);
-        }
-      },
-      onEnterBack: () => {
-        setIsAnimating(true);
-        tl.reverse();
-      },
-      onLeaveBack: () => {
-        if (tl.progress() === 0) {
-          setIsAnimating(false);
-        }
-      },
+      anticipatePin: 1,
       onUpdate: (self) => {
-        // Map scrollTrigger progress to timeline progress
-        const progress = self.progress;
-        tl.progress(progress);
-      },
+        // Only update timeline progress during scroll
+        if (self.getVelocity() !== 0 || self.progress > 0) {
+          tl.progress(self.progress);
+          setIsAnimating(self.progress > 0 && self.progress < 1);
+        }
+      }
     });
 
     return () => {
@@ -93,29 +77,23 @@ like humans`;
   }, []);
 
   return (
-    <>
+    <div
+      ref={sectionRef}
+      className="relative min-h-[90vh] flex items-center justify-center"
+    >
       <div
-        ref={sectionRef}
-        className="relative min-h-screen flex items-center justify-center"
+        ref={containerRef}
+        className="text-white w-11/12 md:w-8/12 2xl:w-11/12 mx-auto text-center z-40"
       >
-        <div
-          ref={containerRef}
-          className="text-white w-11/12 md:w-10/12 mx-auto text-center z-40"
-        >
-          <h1 className="text-2xl md:text-4xl tracking-normal md:leading-relaxed">
-            {chars.map((char, i) => (
-              <span key={i} className="char">
-                {char}
-              </span>
-            ))}
-          </h1>
-          <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-56" />
-          <h1 className="text-white text-3xl text-center sm:text-4xl md:text-5xl mb-5 md:mb-10">
-            How will we ensure your Safety?
-          </h1>
-        </div>
+        <h1 className="text-2xl md:text-4xl 2xl:text-5xl tracking-normal md:leading-relaxed">
+          {chars.map((char, i) => (
+            <span key={i} className="char">
+              {char}
+            </span>
+          ))}
+        </h1>
       </div>
-    </>
+    </div>
   );
 };
 
