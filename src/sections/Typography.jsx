@@ -1,12 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Down from "../assets/down-line.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Typography = () => {
   const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const text = `Humans drive cars and understand risk with our eyes, not gps and
 accelerometer data. We focus our attention on danger rather than on
@@ -17,43 +20,102 @@ like humans`;
 
   useEffect(() => {
     const container = containerRef.current;
+    const section = sectionRef.current;
     const letters = container.querySelectorAll(".char");
+
+    // Clear any previous ScrollTrigger instances
+    if (scrollTriggerRef.current) {
+      scrollTriggerRef.current.kill();
+    }
 
     // Ensure initial color is white
     gsap.set(letters, { color: "#ffffff" });
 
-    gsap.to(letters, {
-      scrollTrigger: {
-        trigger: container,
-        start: "top 80%",       // pin when container top reaches center
-        end: "+=500",            // pin for 300px scroll
-        scrub: true,       // no extra placeholder space
-        // markers: true,
-      },
+    // Create a timeline for our animations
+    const tl = gsap.timeline({
+      paused: true,
+      onComplete: () => setIsAnimating(false),
+      onReverseComplete: () => setIsAnimating(false),
+    });
+
+    // Add the color animation to the timeline
+    tl.to(letters, {
       color: "#b94c99",
-      ease: "power1.out",
+      ease: "power1.inOut",
       stagger: {
-        each: 1,               // letter-by-letter timing
+        each: 0.02,
         from: "start",
+      },
+      duration: 1.5,
+    });
+
+    // Create a unique ScrollTrigger for this section
+    scrollTriggerRef.current = ScrollTrigger.create({
+      trigger: section,
+      start: "top 10%",
+      end: "+=300%",
+      pin: true,
+      pinSpacing: true,
+      id: "typography-pin", // Unique ID to avoid conflicts
+      scrub: 0.5,
+      onEnter: () => {
+        setIsAnimating(true);
+        tl.play(0);
+      },
+      onLeave: () => {
+        if (tl.progress() === 1) {
+          setIsAnimating(false);
+        }
+      },
+      onEnterBack: () => {
+        setIsAnimating(true);
+        tl.reverse();
+      },
+      onLeaveBack: () => {
+        if (tl.progress() === 0) {
+          setIsAnimating(false);
+        }
+      },
+      onUpdate: (self) => {
+        // Map scrollTrigger progress to timeline progress
+        const progress = self.progress;
+        tl.progress(progress);
       },
     });
 
-    ScrollTrigger.refresh();
+    return () => {
+      // Clean up on component unmount
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+      tl.kill();
+    };
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative text-white w-11/12 md:w-10/12 mx-auto mt-[14%] md:mt-[12%] text-center z-40"
-    >
-      <h1 className="text-2xl md:text-4xl tracking-normal md:leading-relaxed">
-        {chars.map((char, i) => (
-          <span key={i} className="char">
-            {char}
-          </span>
-        ))}
-      </h1>
-    </div>
+    <>
+      <div
+        ref={sectionRef}
+        className="relative min-h-screen flex items-center justify-center"
+      >
+        <div
+          ref={containerRef}
+          className="text-white w-11/12 md:w-10/12 mx-auto text-center z-40"
+        >
+          <h1 className="text-2xl md:text-4xl tracking-normal md:leading-relaxed">
+            {chars.map((char, i) => (
+              <span key={i} className="char">
+                {char}
+              </span>
+            ))}
+          </h1>
+          <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-56" />
+          <h1 className="text-white text-3xl text-center sm:text-4xl md:text-5xl mb-5 md:mb-10">
+            How will we ensure your Safety?
+          </h1>
+        </div>
+      </div>
+    </>
   );
 };
 

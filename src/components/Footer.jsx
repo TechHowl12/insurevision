@@ -3,7 +3,7 @@ import footerimg from '../assets/footer.png';
 
 const Footer = () => {
   return (
-    <footer className="w-full py-6"  style={{ backgroundColor: '#0E000B' }}>
+    <footer className="w-full py-6">
       <div className="w-full mx-auto px-4 lg:px-8">
         <div className="flex flex-col p-4 md:flex-row justify-between items-start md:items-center gap-6 md:gap-4">
           {/* Logo and Address */}

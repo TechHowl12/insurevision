@@ -3,16 +3,23 @@
   font-family: "Figtree", sans-serif;
 }
 body{
-  background-color: #0E000b;
+  background: url(../src/assets/dots.png);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
 }
-.hero{
+/* .hero{
   background: url(../src/assets/Hero.png);
   width: 100%;
   background-size: cover;
   background-position: center;
   background-color: #0E000b;
-}
+} */
 .content{
   background: url(../src/assets/hero-img.png);
   background-position: center;
+}
+button{
+ cursor: pointer;
 }

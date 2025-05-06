@@ -1,35 +1,130 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Logo from "../assets/Logo.png";
+import MenuOpen from "../assets/Menuopen.png";
+import MenuClose from "../assets/Menuclosed.png";
 
-const Navbar = ({ toggleButtons,scrollToSection }) => {
+const Navbar = ({
+  scrollToForm,
+  scrollToTypography,
+  scrollToEnviromatics,
+  scrollToLeadership,
+}) => {
+  const [showFixedButtons, setShowFixedButtons] = useState(true);
+
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 768;
+    setShowFixedButtons(isDesktop);
+  }, []);
+
+  const toggleButtons = () => {
+    setShowFixedButtons((prev) => !prev);
+  };
+
   return (
-    <div className="bg-transparent w-full z-50 fixed pt-6 px-2">
+    <div className="bg-transparent w-full z-50 fixed pt-3 px-2">
       <div className="relative flex w-full items-center justify-between">
-        {/* Menu Icon */}
-        <svg
-          width="34"
-          height="34"
-          onClick={toggleButtons}
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Menu"
-          className="bg-[#0E000b] border border-[#b94c99] rounded-lg p-1"
-        >
-          <rect x="3" y="5" width="18" height="2" fill="white" />
-          <rect x="6" y="11" width="12" height="2" fill="white" />
-          <rect x="3" y="17" width="18" height="2" fill="white" />
-        </svg>
+        {/* Menu Icon and Left Buttons */}
+        <div className="flex items-center gap-x-3">
+          <img
+            src={showFixedButtons ? MenuClose : MenuOpen}
+            className="cursor-pointer z-50"
+            onClick={toggleButtons}
+            alt="Menu"
+          />
 
-        <h1 className="absolute left-1/2 transform -translate-x-1/2 uppercase font-thin text-white text-center text-lg">
-          insure<span className="font-bold">vision</span>
-        </h1>
+          {/* Desktop Left Buttons */}
+          <div
+            className={`space-x-3 transition-all duration-500 transform hidden sm:flex ${
+              showFixedButtons
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-20 pointer-events-none"
+            }`}
+          >
+            <button
+              onClick={scrollToTypography}
+              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white  hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+            >
+              Solution
+            </button>
+            <button
+              onClick={scrollToEnviromatics}
+              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white  hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+            >
+              Software
+            </button>
+            <button
+              onClick={scrollToLeadership}
+              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white  hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+            >
+              Leadership
+            </button>
+          </div>
+        </div>
 
-        <button
-          onClick={scrollToSection}
-          className="cursor-pointer hidden sm:inline-flex rounded-full text-xs appearance-none bg-[#b94c99] px-4 py-2 text-white uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+        {/* Center Logo */}
+        <img
+          src={Logo}
+          className="absolute left-1/2 transform -translate-x-1/2"
+          alt="Logo"
+        />
+
+        {/* Desktop Right Buttons */}
+        <div
+          className={`gap-x-3 transition-all duration-500 transform hidden sm:flex ${
+            showFixedButtons
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-20 pointer-events-none"
+          }`}
         >
-          get in touch
-        </button>
+          <div className="space-x-3">
+            <a
+              href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300">
+                LinkedIn
+              </button>
+            </a>
+            <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300">
+              Blogs
+            </button>
+          </div>
+          <button
+            onClick={scrollToForm}
+            className="cursor-pointer rounded-full text-xs appearance-none bg-[#b94c99] px-4 py-2 text-white uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
+            get in touch
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {showFixedButtons && (
+        <div className="sm:hidden mt-1 flex flex-col gap-3 px-4 pb-4 bg-[#0E000b] rounded-b-xl">
+          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+            Solution
+          </button>
+          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+            Software
+          </button>
+          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+            Leadership
+          </button>
+          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+            LinkedIn
+          </button>
+          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+            Blogs
+          </button>
+          <button
+            onClick={scrollToForm}
+            className="rounded-full bg-[#b94c99] text-sm text-white py-2 uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
+            get in touch
+          </button>
+        </div>
+      )}
     </div>
   );
 };

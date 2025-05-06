@@ -32,7 +32,7 @@ const ContactForm = ({formRef}) => {
   };
 
   return (
-    <div ref={formRef} className="w-full flex items-center justify-center p-4 lg:p-8" style={{ backgroundColor: '#0E000B' }}>
+    <div ref={formRef} className="w-full flex items-center justify-center p-4 lg:p-8">
       <div className="w-full sm:w-10/12 flex flex-col lg:flex-row items-center gap-8 lg:gap-16 py-8 lg:py-12">
         {/* Left Section */}
         <div className="w-full text-left lg:px-0 px-auto">

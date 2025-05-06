@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react"
-import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react"
+import { Linkedin } from "lucide-react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import arrrowupimg from "../assets/arrowup.png";
 import arrowdownimg from "../assets/arrowdown.png";
+import markImg from "../assets/Mark.png";
+import danImg from "../assets/Dan.png";
+import hosseinImg from "../assets/Hossein.png";
+import scottImg from "../assets/Scott.png";
 
 // Only register the plugin once to avoid conflicts
 if (typeof window !== "undefined") {
@@ -39,35 +43,35 @@ export default function LeadershipTestimonial(){
   const teamMembers = [
     {
       id: 1,
-      name: "Dan Freedman",
-      title: "Head of Insurance",
-      bio: "Dan led the development of a pioneering telematics insurance product at the UK's Direct Line Group. Dan's expertise in helping familiarise the insurance sector with cutting edge technology is an essential skill in building our offer.",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+      name: "MARK MILLER",
+      title: "Founder & CEO",
+      bio: "Mark brings over 15 years of experience in the insurance industry, with a track record of scaling innovative startups. His vision for combining AI with insurance is driving our mission forward.",
+      image: markImg,
+      linkedinUrl: "https://www.linkedin.com/in/mark-miller-81a89b149",
     },
     {
       id: 2,
-      name: "Hossein Hadian",
-      title: "Head of AI",
-      bio: "Hossein studied his PhD at Johns Hopkins and is an expert in transformer AI. He's published multiple papers on the subject and delivered state-of-the-art financial LLM.",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+      name: "DAN FREEDMAN",
+      title: "Head of Insurance",
+      bio: "Dan led the development of a pioneering telematics insurance product at the UK's Direct Line Group. Dan's expertise in helping familiarise the insurance sector with cutting edge technology is an essential skill in building our offer.",
+      image: danImg,
+      linkedinUrl: "https://www.linkedin.com/in/freedmandan/",
     },
     {
       id: 3,
-      name: "Scott Miller",
-      title: "Head of Hardware",
-      bio: "Scott is an electronics engineer with experience in the military equipment and automotive sectors. Scott's ability to roadmap products from inception to certification, at pace, is seeing us form disruptive new delivery collaborations.",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      name: "HOSSEIN HADIAN",
+      title: "Head of AI",
+      bio: "Hossein studied his PhD at Johns Hopkins and is an expert in transformer AI. He's published multiple papers on the subject and delivered state-of-the-art financial LLM.",
+      image: hosseinImg,
+      linkedinUrl: "https://www.linkedin.com/in/hhadian/",
     },
     {
       id: 4,
-      name: "ELENA RODRIGUEZ",
-      title: "Chief Data Scientist",
-      bio: "Elena leads our data science initiatives, transforming complex insurance data into actionable insights. Her research in predictive modeling has revolutionized how we approach risk assessment and pricing.",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80",
+      name: "SCOTT MILLER",
+      title: "Head of Hardware",
+      bio: "Scott is an electronics engineer with experience in the military equipment and automotive sectors. Scott's ability to roadmap products from inception to certification, at pace, is seeing us form disruptive new delivery collaborations.",
+      image: scottImg,
+      linkedinUrl: "https://www.linkedin.com/in/scottmillereqfin/",
     },
   ]
 
@@ -351,7 +355,7 @@ export default function LeadershipTestimonial(){
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen w-full md:w-10/12 flex items-center justify-center bg-[#0E000b] text-white relative overflow-hidden mx-auto"
+      className="min-h-screen w-full md:w-10/12 flex items-center justify-center text-white relative overflow-hidden mx-auto"
     >
       <div 
         ref={containerRef}
@@ -359,22 +363,15 @@ export default function LeadershipTestimonial(){
         style={{ opacity: 1, visibility: "visible" }}
       >
         {/* Mobile layout adjustment - reordering content */}
-        <div className="w-full flex flex-col md:hidden items-center justify-center mb-4">
-          {/* Mobile title */}
-          <h1 className="leadership-title text-3xl font-bold tracking-wider mt-2 mb-3">LEADERSHIP</h1>
+        <div className="w-full flex flex-col md:hidden items-center justify-center mb-4 pr-2">
+          {/* Mobile title at the top */}
+          <h1 className="leadership-title text-3xl font-bold tracking-wider mt-2 mb-4">LEADERSHIP</h1>
           
-          {/* Bio text first on mobile */}
-          <div className="bio-container w-full mt-2 mb-4">
-            <div className="bio-box relative py-3 px-4 border border-[#B94C99] w-full">
-              <p className="bio-text text-xs text-center text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
-            </div>
-          </div>
-          
-          {/* Compact images area */}
-          <div className="flex justify-center items-center space-x-2 mb-4">
-            <div className="flex flex-col space-y-2">
+          {/* Compact images area - centered */}
+          <div className="flex justify-center items-center space-x-4 mb-4" style={{transform: "translateX(5%)"}}>
+            <div className="flex flex-col space-y-3">
               {/* Small images on the side */}
-              <div className="profile-image w-12 h-16 overflow-hidden">
+              <div className="profile-image w-14 h-18 overflow-hidden">
                 <img
                   src={smallProfiles[0].image || "/placeholder.svg"}
                   alt="Team member"
@@ -382,7 +379,7 @@ export default function LeadershipTestimonial(){
                   key={`small-mobile-1-${activeMember}`}
                 />
               </div>
-              <div className="profile-image w-12 h-16 overflow-hidden">
+              <div className="profile-image w-14 h-18 overflow-hidden">
                 <img
                   src={smallProfiles[1].image || "/placeholder.svg"}
                   alt="Team member"
@@ -393,9 +390,9 @@ export default function LeadershipTestimonial(){
             </div>
             
             {/* Main profile image */}
-            <div className="main-profile relative">
+            <div className="main-profile relative mx-2">
               <div className="absolute inset-1 border-r-2 border-b-2 border-[#B94C99] transform translate-x-1 translate-y-1"></div>
-              <div className="w-40 h-40 overflow-hidden">
+              <div className="w-[200px] h-[165px] md:w-[306px] md:h-[253px] overflow-hidden flex items-center justify-center">
                 <img
                   src={currentMember.image || "/placeholder.svg"}
                   alt={currentMember.name}
@@ -405,9 +402,9 @@ export default function LeadershipTestimonial(){
               </div>
             </div>
             
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3">
               {/* Small images on the other side */}
-              <div className="profile-image w-12 h-16 overflow-hidden">
+              <div className="profile-image w-14 h-18 overflow-hidden">
                 <img
                   src={smallProfiles[2].image || "/placeholder.svg"}
                   alt="Team member"
@@ -417,7 +414,7 @@ export default function LeadershipTestimonial(){
               </div>
               
               {/* Vertical arrows for mobile - moved to the side */}
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-3">
                 <button
                   className="text-gray-400 hover:text-white transition-colors"
                   onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
@@ -443,30 +440,21 @@ export default function LeadershipTestimonial(){
           </div>
           
           {/* Name and title */}
-          <div className="name-title text-center mt-1 mb-2" key={`name-mobile-${activeMember}`}>
+          <div className="name-title text-center mt-2 mb-3" key={`name-mobile-${activeMember}`}>
             <div className="text-xs text-[#B94C99] mb-1">MEET</div>
             <h2 className="text-2xl font-bold">{currentMember.name}</h2>
             <div className="mt-1 text-xs text-gray-400">{currentMember.title}</div>
           </div>
           
           {/* Social icons */}
-          <div className="social-icons flex space-x-4 mb-2">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Facebook size={16} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+          <div className="social-icons flex space-x-4 mb-3">
+            <a href={currentMember.linkedinUrl} className="text-gray-400 hover:text-white transition-colors">
               <Linkedin size={16} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Instagram size={16} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter size={16} />
             </a>
           </div>
           
           {/* Pagination */}
-          <div className="w-full flex justify-center space-x-2 mt-2 mb-2">
+          <div className="w-full flex justify-center space-x-2 mt-1 mb-4">
             {teamMembers && teamMembers.length > 0 ? (
               teamMembers.map((member) => (
                 <button
@@ -483,26 +471,33 @@ export default function LeadershipTestimonial(){
               <div className="text-gray-400 text-xs">No team members to display</div>
             )}
           </div>
+          
+          {/* Bio text at the bottom */}
+          <div className="bio-container w-full mt-1 mb-3 flex justify-center">
+            <div className="bio-box relative  py-8 px-8 border border-[#B94C99] w-[300px] md:w-[306px] text-center">
+              <p className="bio-text text-xs text-center text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
+            </div>
+          </div>
         </div>
 
         {/* Original desktop layout - hide on mobile */}
         <div className="hidden md:flex md:flex-row md:w-full items-center justify-between">
           {/* Left side - Title and Bio */}
-          <div className="w-full md:w-1/2 flex flex-col items-center justify-center z-10 px-2 md:px-8">
-            <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider mt-6 md:mt-16">LEADERSHIP</h1>
+          <div className="w-full md:w-[140%] flex flex-col items-center justify-center z-10 px-2 md:px-8 md:mt-40">
+            <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider">LEADERSHIP</h1>
 
             {/* Bio with border box that's attached to the image */}
-            <div className="bio-container w-full mt-6 ml-2 md:ml-16 flex justify-end">
-              <div className="bio-box relative py-4 pl-6 pr-2 border-t border-l border-b border-[#B94C99] text-right w-full ml-2 md:ml-4">
-                <p className="bio-text text-xs text-left sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+            <div className="bio-container w-full ml-20 mt-16 md:ml-15 flex justify-center">
+              <div className="bio-box relative  pr-2 border-t border-l border-b border-[#B94C99] text-center ml-2 md:ml-4">
+                <p className="bio-text text-xs px-4 py-10 text-center sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
               </div>
             </div>
           </div>
 
           {/* Center - Profile Images */}
-          <div className="w-full flex flex-col items-start justify-center relative my-6 md:my-0">
+          <div className="w-full md:w-1/2 flex flex-col items-start justify-center relative my-6 md:my-0">
             {/* Small profile image top */}
-            <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
+            <div className="profile-image mb-5 md:mb-6 w-20 md:w-24 h-24 md:h-32 overflow-hidden">
               <img
                 src={smallProfiles[0].image || "/placeholder.svg"}
                 alt="Team member"
@@ -512,7 +507,7 @@ export default function LeadershipTestimonial(){
             </div>
 
             {/* Small profile image middle-top */}
-            <div className="profile-image mb-3 md:mb-6 w-16 md:w-24 h-20 md:h-32 overflow-hidden">
+            <div className="profile-image mb-5 md:mb-6 w-20 md:w-24 h-24 md:h-32 overflow-hidden">
               <img
                 src={smallProfiles[1].image || "/placeholder.svg"}
                 alt="Team member"
@@ -522,20 +517,20 @@ export default function LeadershipTestimonial(){
             </div>
 
             {/* Main profile image */}
-            <div className="main-profile relative mb-3 md:mb-6">
+            <div className="main-profile relative mb-5 md:mb-6">
               <div className="absolute inset-1 border-r-4 border-b-4 border-[#B94C99] transform translate-x-2 translate-y-2"></div>
-              <div className="w-48 sm:w-64 md:w-78 h-48 sm:h-64 md:h-76 overflow-hidden">
+              <div className="w-[253px] h-[309px] overflow-hidden flex items-center justify-center">
                 <img
                   src={currentMember.image || "/placeholder.svg"}
                   alt={currentMember.name}
                   className="w-full h-full object-cover"
                   key={`main-${activeMember}`}
                 />
-              </div>
+              </div>  
             </div>
 
             {/* Small profile image bottom */}
-            <div className="profile-image w-16 md:w-24 h-20 md:h-32 overflow-hidden">
+            <div className="profile-image w-20 md:w-24 h-24 md:h-32 overflow-hidden">
               <img
                 src={smallProfiles[2].image || "/placeholder.svg"}
                 alt="Team member"
@@ -546,7 +541,7 @@ export default function LeadershipTestimonial(){
           </div>
 
           {/* Right side - Name, Title, Social */}
-          <div className="w-full flex flex-col ml-[2%] lg:mr[5%] items-center md:items-start justify-center z-10">
+          <div className="w-full flex md:m-20 flex-col ml-[2%] lg:mr[5%] items-center md:items-start justify-center z-10">
             <div className="name-title text-center md:text-left mt-6 md:mt-56 mb-4 md:mb-8" key={`name-${activeMember}`}>
               <div className="text-xs md:text-sm text-[#B94C99] mb-1 md:mb-2">MEET</div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
@@ -556,17 +551,8 @@ export default function LeadershipTestimonial(){
 
             {/* Social icons */}
             <div className="social-icons flex space-x-4 mb-4 md:mb-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href={currentMember.linkedinUrl} className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin size={18} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram size={18} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter size={18} />
               </a>
             </div>
 
