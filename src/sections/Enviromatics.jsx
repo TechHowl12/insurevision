@@ -49,10 +49,19 @@ const Enviromatics = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animationCycles, setAnimationCycles] = useState(0);
   const [isPinActive, setIsPinActive] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   const scrollTriggerRef = useRef(null);
   const containerRef = useRef(null);
   const totalCycles = stepDetails.length;
+
+  // Check for mobile viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Set up ScrollTrigger for pinning
   useEffect(() => {
@@ -61,21 +70,26 @@ const Enviromatics = () => {
       scrollTriggerRef.current.kill();
     }
 
-    // Create new ScrollTrigger instance
+    // Kill all ScrollTrigger instances related to this component
+    ScrollTrigger.getAll()
+      .filter(t => t.vars.id === "enviromatics-pin" || t.vars.trigger === sectionRef.current)
+      .forEach(t => t.kill());
+
+    // Create new ScrollTrigger instance (only pin on desktop)
     if (sectionRef.current && containerRef.current) {
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
         end: "+=100%", // More space for complete cycle
-        pin: true,
-        pinSpacing: true,
+        pin: !isMobile, // Only pin on desktop
+        pinSpacing:!isMobile, // Only add pin spacing on desktop
         anticipatePin: 1,
         scrub: false,
         markers: false,
         id: "enviromatics-pin",
         onEnter: () => {
           setIsVisible(true);
-          setIsPinActive(true);
+          setIsPinActive(!isMobile);
           // We'll let the animation flow naturally
         },
         onLeave: () => {
@@ -84,7 +98,7 @@ const Enviromatics = () => {
         },
         onEnterBack: () => {
           setIsVisible(true);
-          setIsPinActive(true);
+          setIsPinActive(!isMobile);
         },
         onLeaveBack: () => {
           setIsVisible(false);
@@ -93,13 +107,23 @@ const Enviromatics = () => {
       });
     }
 
-    // Cleanup on component unmount
+    // Refresh ScrollTrigger to apply changes
+    ScrollTrigger.refresh();
+
+    // Cleanup on component unmount or when screen size changes
     return () => {
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
       }
+      
+      // Kill all related ScrollTrigger instances
+      ScrollTrigger.getAll()
+        .filter(t => t.vars.id === "enviromatics-pin" || t.vars.trigger === sectionRef.current)
+        .forEach(t => t.kill());
+        
+      ScrollTrigger.refresh();
     };
-  }, []);
+  }, [isMobile]); // Add isMobile as dependency to rerun when screen size changes
 
   // Animate only when visible
   useEffect(() => {
@@ -127,7 +151,7 @@ const Enviromatics = () => {
   return (
     <div 
       ref={sectionRef}
-      className="text-white w-full h-screen flex items-center justify-center mt-6 px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
+      className={`text-white w-full ${isMobile ? 'min-h-screen pb-10' : 'h-screen'} flex items-center justify-center mt-6 px-4 md:px-[12%] py-0 md:py-16 overflow-hidden`}
     >
       <div ref={containerRef} className="flex flex-col">
         {/* Intro Section */}
