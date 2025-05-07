@@ -78,19 +78,21 @@ const Navbar = ({
         {/* Center Logo (Hide on scroll) */}
         <img
           src={Logo}
-          className={`absolute left-1/2 transform -translate-x-1/2 transition-all duration-500 ${ isScrolled ? "opacity-0" : "opacity-100" }`}
+          className={`absolute left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
+            isScrolled ? "opacity-0" : "opacity-100"
+          }`}
           alt="Logo"
         />
 
         {/* Desktop Right Buttons */}
-        <div
-          className={`gap-x-3 hidden sm:flex `}
-        >
-          <div className={`space-x-3 duration-500 transform transition-all ${
-            isScrolled
-              ? "opacity-0 translate-x-20"
-              : "opacity-100 translate-x-0"
-          }`}>
+        <div className={`gap-x-3 hidden sm:flex `}>
+          <div
+            className={`space-x-3 duration-500 transform transition-all ${
+              isScrolled
+                ? "opacity-0 translate-x-20"
+                : "opacity-100 translate-x-0"
+            }`}
+          >
             <a
               href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
               target="_blank"
@@ -106,7 +108,7 @@ const Navbar = ({
           </div>
           <button
             onClick={scrollToForm}
-            className="cursor-pointer rounded-full text-xs appearance-none bg-[#b94c99] px-4 py-2 text-white uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="cursor-pointer rounded-full text-xs appearance-none bg-[#b94c99] px-8 py-2 text-white uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
           >
             get in touch
           </button>
@@ -116,18 +118,32 @@ const Navbar = ({
       {/* Mobile Menu Dropdown */}
       {showMenu && (
         <div className="sm:hidden mt-1 flex flex-col gap-3 px-4 pb-4 bg-[#0E000b] rounded-b-xl">
-          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+          <button
+            onClick={scrollToTypography}
+            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
             Solution
           </button>
-          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+          <button
+            onClick={scrollToEnviromatics}
+            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
             Software
           </button>
-          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+          <button
+            onClick={scrollToLeadership}
+            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
             Leadership
           </button>
-          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+          <a
+            href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full flex justify-center items-center bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+          >
             LinkedIn
-          </button>
+          </a>
           <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
             Blogs
           </button>
