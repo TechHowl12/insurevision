@@ -7,7 +7,7 @@ import Banner from "../assets/Banner.webp";
 const Hero = () => {
 
   return (
-    <div className="hero">
+    <div className="hero md:h-[120vh]">
       <section className="hidden min-[600px]:block">
         <img src={Banner} />
       </section>
