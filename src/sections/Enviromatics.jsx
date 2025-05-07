@@ -80,7 +80,7 @@ const Enviromatics = () => {
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=100%", // More space for complete cycle
+        end: "+=200%", // More space for complete cycle
         pin: !isMobile, // Only pin on desktop
         pinSpacing:!isMobile, // Only add pin spacing on desktop
         anticipatePin: 1,
