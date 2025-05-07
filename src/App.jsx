@@ -64,7 +64,7 @@ function App() {
         <DesktopImageZoom />
       </div>
 
-      <div ref={enviromaticsRef}>
+      <div className="mt-0 md:mt-40" ref={enviromaticsRef}>
         <Enviromatics />
       </div>
 
