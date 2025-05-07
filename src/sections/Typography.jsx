@@ -83,9 +83,9 @@ like humans`;
     >
       <div
         ref={containerRef}
-        className="text-white w-11/12 md:w-8/12 2xl:w-11/12 mx-auto text-center z-40"
+        className="text-white w-11/12 md:w-8/12 2xl:w-10/12 mx-auto text-center z-40"
       >
-        <h1 className="text-2xl md:text-4xl 2xl:text-5xl tracking-normal md:leading-relaxed">
+        <h1 className="text-2xl md:text-4xl tracking-normal md:leading-relaxed">
           {chars.map((char, i) => (
             <span key={i} className="char">
               {char}

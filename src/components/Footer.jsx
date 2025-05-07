@@ -22,7 +22,7 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="flex mb-6 flex-wrap items-center md:justify-center justify-start  gap-3">
-  {["Facebook", "Instagram", "Blogs", "Solutions", "Software", "Leadership"].map((label) => (
+  {["LinkedIn", "Blogs", "Solutions", "Software", "Leadership"].map((label) => (
     <a
       key={label}
       href="#"
@@ -33,11 +33,11 @@ const Footer = () => {
   ))}
   <a
     href="#"
-    className="px-8 py-4 rounded-full text-sm border border-[#B94C99] text-white hover:bg-[#B94C99]/20 transition-colors font-semibold uppercase tracking-wide"
-  >
+    className="px-4 py-2 rounded-full text-xs border border-[#B94C99] text-white hover:bg-[#B94C99]/20 transition-colors">
     PRESS RELEASE
   </a>
 </div>
+            {/*px-8 py-4 rounded-full text-sm border border-[#B94C99] text-white hover:bg-[#B94C99]/20 transition-colors font-semibold uppercase tracking-wide}
 
 
           {/* NVIDIA Logo */}

@@ -66,7 +66,7 @@ const Enviromatics = () => {
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=500%", // More space for complete cycle
+        end: "+=100%", // More space for complete cycle
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
@@ -127,7 +127,7 @@ const Enviromatics = () => {
   return (
     <div 
       ref={sectionRef}
-      className="text-white w-full h-screen  mt-6 md:mt-30 px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
+      className="text-white w-full h-screen flex items-center justify-center mt-6 md:mt-30 px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
     >
       <div ref={containerRef} className="h-full flex flex-col">
         {/* Intro Section */}
@@ -158,7 +158,7 @@ const Enviromatics = () => {
                   setProgress(0);
                   setConnectorProgress(0);
                 }}
-                className={`border-2 uppercase whitespace-nowrap rounded-full py-4 text-xs w-full flex items-center justify-between pl-4 overflow-hidden
+                className={`border uppercase whitespace-nowrap rounded-full py-4 text-xs w-full flex items-center justify-between pl-4 overflow-hidden
                   ${activeButton === index ? "flex" : "hidden"} 
                   md:flex                                             
                   ${
@@ -169,7 +169,7 @@ const Enviromatics = () => {
                 `}
               >
                 <span className="z-10">{step.title}</span>
-                <div className="w-36 md:w-14 lg:w-24 xl:w-36 h-0.5 flex z-40">
+                <div className="w-36 md:w-14 lg:w-24 xl:w-32 h-[1px] flex z-40">
                   <div
                     className="h-full transition-all duration-100"
                     style={{
@@ -187,7 +187,7 @@ const Enviromatics = () => {
                 </div>
               </button>
               {index < stepDetails.length - 1 && (
-                <div className="hidden sm:block w-12 h-0.5 bg-white relative">
+                <div className="hidden sm:block w-12 h-[1px] bg-white relative">
                   <div
                     className="absolute left-0 top-0 h-full transition-all duration-100"
                     style={{
@@ -234,9 +234,9 @@ const Enviromatics = () => {
         </div>
 
         {/* Content Section */}
-        <div className="mt-3 md:mt-7 flex flex-col sm:flex-row w-full md:w-10/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
-          <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 sm:gap-y-0 justify-between py-3">
-            <h4 className="text-slate-200 2xl:text-[20px] md:text-sm leading-relaxed w-full sm:w-10/12 capitalize">
+        <div className="mt-3 md:mt-7 flex items-center flex-col sm:flex-row w-full md:w-11/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
+          <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 justify-between py-3">
+            <h4 className="text-slate-200 text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize">
               {currentStep.description}
             </h4>
             <div className="flex flex-col gap-7">
