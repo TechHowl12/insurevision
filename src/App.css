@@ -3,7 +3,7 @@
   font-family: "Figtree", sans-serif;
 }
 body{
-  background: url(../src/assets/dots.png);
+  background: url(../src/assets/dots.webp);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

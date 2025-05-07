@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import Arrow from "../assets/arrowdown.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AccessExtractImg from "../assets/Access&Extract.png";
-import AnalyzePredictImg from "../assets/Analyze&Predict.png";
-import CoachImproveImg from "../assets/Coach&Improve.png";
+import AccessExtractImg from "../assets/Access&Extract.webp";
+import AnalyzePredictImg from "../assets/Analyze&Predict.webp";
+import CoachImproveImg from "../assets/Coach&Improve.webp";
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
