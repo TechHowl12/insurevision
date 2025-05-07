@@ -49,7 +49,7 @@ const DesktopImageZoom = () => {
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: "+=2000px",
+        end: "+=8000px",
         scrub: 0.5,
         pin: true,
         markers: false,
@@ -62,15 +62,15 @@ const DesktopImageZoom = () => {
         .to(stepRef, {
           autoAlpha: 1,
           y: 0,
-          duration: 1,
+          duration: 3,
           ease: "power2.out",
         })
         .addLabel(label)
-        .to({}, { duration: 2 })
+        .to({}, { duration: 4 })
         .to(stepRef, {
           autoAlpha: 0,
           y: -20,
-          duration: 0.8,
+          duration: 3,
           ease: "power2.in",
         });
     };
@@ -82,31 +82,33 @@ const DesktopImageZoom = () => {
       .to(img1, {
         width: "100%",
         ease: "power2.out",
-        duration: isMobile ? 1.5 : 1,
+        duration: isMobile ? 4.5 : 4,
       });
 
     // Video animation
-    timeline
-      .set(img2, { display: "block" }) // width is set via Tailwind (w-[35%])
-      .to(img2, { autoAlpha: 1, duration: 0.5 });
+timeline
+.set(img2, { display: "block" }) // width is set via Tailwind (w-[35%])
+.to(img2, { autoAlpha: 1, duration: 2 }); // was 0.5 → now 2
 
-    // Step reveals
-    if (isMobile) {
-      revealStep(step1, "step1visible");
-      revealStep(step2, "step2visible");
-      revealStep(step3, "step3visible");
-    } else {
-      timeline
-        .set(step1, { display: "block" })
-        .to(step1, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" })
-        .set(step2, { display: "block" })
-        .to(step2, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" })
-        .set(step3, { display: "block" })
-        .to(step3, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" });
-    }
+// Step reveals
+if (isMobile) {
+revealStep(step1, "step1visible");
+revealStep(step2, "step2visible");
+revealStep(step3, "step3visible");
+} else {
+timeline
+  .set(step1, { display: "block" })
+  .to(step1, { autoAlpha: 1, y: 0, duration: 2.5, ease: "power2.out" }) // was 0.8 → now 2.5
+  .set(step2, { display: "block" })
+  .to(step2, { autoAlpha: 1, y: 0, duration: 2.5, ease: "power2.out" }) // was 0.8 → now 2.5
+  .set(step3, { display: "block" })
+  .to(step3, { autoAlpha: 1, y: 0, duration: 2.5, ease: "power2.out" }); // was 0.8 → now 2.5
+}
 
-    // Hold for 5 seconds
-    timeline.to({}, { duration: 5 });
+// Hold for 10 seconds instead of 5
+timeline.to({}, { duration: 10 }); // was 5 → now 10
+
+
 
     ScrollTrigger.refresh();
 

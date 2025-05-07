@@ -127,7 +127,7 @@ const Enviromatics = () => {
   return (
     <div 
       ref={sectionRef}
-      className="text-white w-full h-screen px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
+      className="text-white w-full h-screen  mt-6 md:mt-30 px-4 md:px-[12%] py-0 md:py-16 overflow-hidden"
     >
       <div ref={containerRef} className="h-full flex flex-col">
         {/* Intro Section */}
