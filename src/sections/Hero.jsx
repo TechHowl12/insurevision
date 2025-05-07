@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Lines from "../assets/line-mask.png";
 import Up from "../assets/up-line.png";
 import Down from "../assets/down-line.png";
-import Banner from "../assets/Banner.png";
+import Banner from "../assets/Banner.webp";
 
 const Hero = () => {
 
