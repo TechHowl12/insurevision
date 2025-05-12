@@ -138,8 +138,8 @@ const DesktopImageZoom = () => {
         className="h-screen overflow-visible flex items-center justify-center py-5"
       >
         <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <div className="w-11/12">
+          <div className="flex justify-center items-center">
+            <div className="w-10/12">
               <div className="text-center relative overflow-visible">
                 <h1 
                   ref={titleRef} 
@@ -166,7 +166,7 @@ const DesktopImageZoom = () => {
                   {/* Step 1 */}
                   <div
                     ref={step1Ref}
-                    className="absolute z-50 top-10 w-full px-4 sm:px-0"
+                    className="absolute z-50 top-5 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex justify-center">
@@ -207,7 +207,7 @@ const DesktopImageZoom = () => {
                             in its earliest stages, alerting drivers and
                             activating preventive measures seconds before
                             potential accidents occur. Not just smarter
-                            insurance—safer roads.
+                            insurance-safer roads.
                           </p>
                         </div>
                         <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-ml-6 md:-ml-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
@@ -226,7 +226,7 @@ const DesktopImageZoom = () => {
                     <div className="flex justify-end">
                       <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col-reverse sm:flex-row-reverse items-center">
                         <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl md:text-2xl text-right">
+                          <p className="mb-0 font-bold text-lg sm:text-xl md:text-2xl text-right whitespace-nowrap">
                             Super Charge Existing Video Telematics
                           </p>
                           <p className="mt-2 text-xs sm:text-sm text-right max-w-md ml-auto inline-flex">
