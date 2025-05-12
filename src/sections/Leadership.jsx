@@ -22,7 +22,8 @@ export default function LeadershipTestimonial(){
   const scrollTriggerRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-
+  // Remove all carousel refs
+  
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -132,19 +133,9 @@ export default function LeadershipTestimonial(){
           scrub: 1, // Smoother for touch devices
           markers: false,
           onEnter: () => {
-            // Simpler entrance animation for mobile
             gsap.to(container, {
               duration: 0.5, // Faster for mobile
               autoAlpha: 1,
-              ease: "power2.out",
-            })
-
-            // Minimal animations for mobile to improve performance
-            gsap.from([".leadership-title", ".profile-image", ".bio-text", ".name-title"], {
-              duration: 0.5,
-              y: 20,
-              opacity: 0,
-              stagger: 0.1,
               ease: "power2.out",
             })
           },
@@ -180,52 +171,6 @@ export default function LeadershipTestimonial(){
               duration: 1,
               autoAlpha: 1,
               ease: "power3.out",
-            })
-
-            // Full desktop animations
-            gsap.from(".leadership-title", {
-              duration: 1.2,
-              y: 50,
-              ease: "power3.out",
-              delay: 0.3,
-            })
-
-            gsap.from(".profile-image", {
-              duration: 0.8,
-              scale: 0.8,
-              stagger: 0.2,
-              ease: "back.out(1.7)",
-              delay: 0.5,
-            })
-
-            gsap.from(".bio-text", {
-              duration: 1,
-              x: -30,
-              ease: "power2.out",
-              delay: 0.7,
-            })
-
-            gsap.from(".name-title", {
-              duration: 1,
-              y: 20,
-              ease: "power2.out",
-              delay: 0.9,
-            })
-
-            gsap.from(".social-icons a", {
-              duration: 0.5,
-              y: 10,
-              stagger: 0.1,
-              ease: "power2.out",
-              delay: 1.2,
-            })
-
-            gsap.from(".pagination button", {
-              duration: 0.5,
-              scale: 0,
-              stagger: 0.1,
-              ease: "back.out(1.7)",
-              delay: 1.4,
             })
           },
           onUpdate: (self) => {
@@ -319,7 +264,7 @@ export default function LeadershipTestimonial(){
             if (!ScrollTrigger.isScrolling()) {
               setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1));
             }
-          }, 5000); // Change every 2 seconds
+          }, 5000); // Change every 5 seconds
         } else {
           // Clear interval when section is not visible
           clearInterval(interval);
@@ -340,17 +285,15 @@ export default function LeadershipTestimonial(){
     };
   }, [totalMembers]);
 
-  // Animation for changing team members - simplify by removing animations
-  useEffect(() => {
-    // Simply update the content without animations when navigating
-    // This will make immediate changes with no fades or movements
-  }, [activeMember, isMobile]);
-
+  // Remove all animation effects
+  
   const handlePagination = (index) => {
     setActiveMember(index)
   }
 
   const currentMember = teamMembers.find((member) => member.id === activeMember) || teamMembers[0]
+  
+  // Remove carousel items
 
   return (
     <div
@@ -417,22 +360,24 @@ export default function LeadershipTestimonial(){
               <div className="flex flex-col space-y-3">
                 <button
                   className="text-gray-400 hover:text-white transition-colors"
+                  style={{ margin: "2px" }}
                   onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
                 >
                   <img
                     src={arrrowupimg}
                     alt="Previous member"
-                    className="h-4 w-1.5"
+                    className="h-8 w-2"
                   />
                 </button>
                 <button
                   className="text-gray-400 hover:text-white transition-colors"
+                  style={{ margin: "2px" }}
                   onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
                 >
                   <img
                     src={arrowdownimg}
                     alt="Next member"
-                    className="h-4 w-1.5"
+                    className="h-8 w-2"
                   />
                 </button>
               </div>
@@ -474,22 +419,26 @@ export default function LeadershipTestimonial(){
           
           {/* Bio text at the bottom */}
           <div className="bio-container w-full mt-1 mb-3 flex justify-center">
-            <div className="bio-box relative  py-8 px-8 border border-[#B94C99] w-[300px] md:w-[306px] text-center">
-              <p className="bio-text text-xs text-center text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
+            <div className="bio-box relative py-8 px-8 border border-[#B94C99] w-[300px] md:w-[306px] text-center"
+              style={{ width: "455px", height: "180px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
+            >
+              <p className="bio-text text-xs text-right text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
             </div>
           </div>
         </div>
 
         {/* Original desktop layout - hide on mobile */}
-        <div className="hidden md:flex md:flex-row md:w-full items-center justify-between">
+        <div className="hidden md:flex md:flex-row md:w-full md:pr-30 items-center justify-center">
           {/* Left side - Title and Bio */}
-          <div className="w-full md:w-[140%] flex flex-col items-center justify-center z-10 px-2 md:px-8 md:mt-40">
+          <div className="w-full md:w-[140%] flex flex-col items-center justify-center z-10 md:ml-22 md:mt-40">
             <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider">LEADERSHIP</h1>
 
             {/* Bio with border box that's attached to the image */}
-            <div className="bio-container w-full ml-20 mt-16 md:ml-15 flex justify-center">
-              <div className="bio-box relative  pr-2 border-t border-l border-b border-[#B94C99] text-center ml-2 md:ml-4">
-                <p className="bio-text text-xs px-4 py-10 text-center sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+            <div className="bio-container w-full md:ml-10 ml-20 mt-16 flex justify-center">
+              <div className="bio-box relative pr-2 border-t border-l border-b border-[#B94C99] text-center ml-2 md:ml-4"
+                style={{ width: "455px", height: "180px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
+              >
+                <p className="bio-text text-xs px-4 py-10 text-right sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
               </div>
             </div>
           </div>
@@ -576,9 +525,10 @@ export default function LeadershipTestimonial(){
             </div>
 
             {/* Vertical arrows - Now positioned to the right */}
-            <div className="arrows absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
+            <div className="arrows absolute  gap-4 right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
               <button
                 className="text-gray-400 hover:text-white transition-colors"
+                style={{ margin: "2px" }}
                 onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
               >
                 <img
@@ -589,6 +539,7 @@ export default function LeadershipTestimonial(){
               </button>
               <button
                 className="text-gray-400 hover:text-white transition-colors"
+                style={{ margin: "2px" }}
                 onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
               >
                 <img

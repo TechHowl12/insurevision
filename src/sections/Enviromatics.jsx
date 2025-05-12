@@ -54,6 +54,15 @@ const Enviromatics = () => {
   const scrollTriggerRef = useRef(null);
   const containerRef = useRef(null);
   const totalCycles = stepDetails.length;
+  
+  // Animation duration in milliseconds (5 seconds)
+  const animationDuration = 5000;
+  const progressStepDuration = animationDuration * 0.6; // 60% of time for progress
+  const connectorStepDuration = animationDuration * 0.4; // 40% of time for connector
+  
+  // Calculate intervals based on durations
+  const progressInterval = progressStepDuration / 100; // Time for 1% progress
+  const connectorInterval = connectorStepDuration / 100; // Time for 1% connector progress
 
   // Check for mobile viewport
   useEffect(() => {
@@ -127,24 +136,31 @@ const Enviromatics = () => {
 
   // Animate only when visible
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible && !isMobile) return;
     
-    const interval = setInterval(() => {
+    let animationTimer;
+    
+    const runAnimation = () => {
       if (progress < 100) {
-        setProgress((p) => p + 1);
+        setProgress((p) => p + 3.5);
+        animationTimer = setTimeout(runAnimation, progressInterval);
       } else if (connectorProgress < 100) {
-        setConnectorProgress((cp) => cp + 2);
+        setConnectorProgress((cp) => cp + 6);
+        animationTimer = setTimeout(runAnimation, connectorInterval);
       } else {
         // Move to next step
         const nextButton = (activeButton + 1) % stepDetails.length;
         setActiveButton(nextButton);
         setProgress(0);
         setConnectorProgress(0);
+        animationTimer = setTimeout(runAnimation, 100); // Small delay before starting next cycle
       }
-    }, 40);
+    };
     
-    return () => clearInterval(interval);
-  }, [isVisible, progress, connectorProgress, activeButton, stepDetails.length]);
+    animationTimer = setTimeout(runAnimation, 100); // Start initial animation
+    
+    return () => clearTimeout(animationTimer);
+  }, [isVisible, progress, connectorProgress, activeButton, stepDetails.length, progressInterval, connectorInterval]);
 
   const currentStep = stepDetails[activeButton];
 
@@ -260,7 +276,7 @@ const Enviromatics = () => {
         {/* Content Section */}
         <div className="mt-3 md:mt-7 flex items-center flex-col sm:flex-row w-full md:w-11/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
           <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 justify-between py-3">
-            <h4 className="text-slate-200 text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize">
+            <h4 className="text-slate-200 text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize h-32 md:h-36">
               {currentStep.description}
             </h4>
             <div className="flex flex-col gap-7">
@@ -296,7 +312,7 @@ const Enviromatics = () => {
             </div>
           </div>
           <div className="w-full sm:w-1/2 xl:w-4/12">
-            <div className="relative overflow-hidden mx-auto">
+            <div className="relative overflow-hidden mx-auto h-full md:h-96">
               {/* Background image */}
               <img 
                 src={currentStep.bgImage} 

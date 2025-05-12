@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Down from "../assets/down-line.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,17 +82,20 @@ like humans`;
       ref={sectionRef}
       className="relative min-h-[90vh] flex items-center justify-center"
     >
+          
       <div
         ref={containerRef}
         className="text-white w-11/12 md:w-9/12 lg:w-10/12 2xl:w-10/12 mx-auto text-center z-40"
       >
-        <h1 className="text-2xl md:text-4xl tracking-normal md:leading-relaxed">
+        <h1 className="text-2xl md:text-4xl md:mt-50 tracking-normal md:leading-relaxed">
+    
           {chars.map((char, i) => (
             <span key={i} className="char">
               {char}
             </span>
           ))}
         </h1>
+        <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-60" />
       </div>
     </div>
   );
