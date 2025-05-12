@@ -172,7 +172,7 @@ const DesktopImageZoom = () => {
                     <div className="flex justify-center">
                       <div className="w-full md:w-2/3 lg:w-1/2">
                         <div className="text-center bg-black p-3 sm:p-5 md:p-10 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl md:text-2xl">
+                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl">
                             Next Gen Risk Understanding
                           </p>
                           <p className="mt-2 text-xs sm:text-sm">
@@ -193,13 +193,13 @@ const DesktopImageZoom = () => {
                   {/* Step 2 */}
                   <div
                     ref={step2Ref}
-                    className="absolute z-50 bottom-35 right-30 w-full px-4 sm:px-0"
+                    className="absolute z-50 bottom-20 2xl:bottom-35 right-30 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex">
                       <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col sm:flex-row items-center">
                         <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl md:text-2xl text-left">
+                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-left">
                             Real Time Accident Prevention
                           </p>
                           <p className="mt-2 text-xs sm:text-sm text-left max-w-md">
@@ -220,13 +220,13 @@ const DesktopImageZoom = () => {
                   {/* Step 3 */}
                   <div
                     ref={step3Ref}
-                    className="absolute z-50 bottom-35 left-30 w-full px-4 sm:px-0"
+                    className="absolute z-50 bottom-20 2xl:bottom-35 left-30 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex justify-end">
                       <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col-reverse sm:flex-row-reverse items-center">
                         <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl md:text-2xl text-right whitespace-nowrap">
+                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-right whitespace-nowrap">
                             Super Charge Existing Video Telematics
                           </p>
                           <p className="mt-2 text-xs sm:text-sm text-right max-w-md ml-auto inline-flex">
