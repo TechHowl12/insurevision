@@ -37,8 +37,8 @@ const ContactForm = ({formRef}) => {
         {/* Left Section */}
         <div className="w-full text-left lg:px-0 px-auto">
           <div className="space-y-3">
-            <p className="text-[#B94C99] text-sm font-medium uppercase tracking-wider">CONTACT US</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            <p className="text-[#B94C99] text-lg font-medium uppercase tracking-wider">CONTACT US</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl text-white leading-tight">
               Deploying Across<br />The Eco-System
             </h1>
             <p className="text-gray-300 mt-4 text-sm sm:text-base">
@@ -47,9 +47,9 @@ const ContactForm = ({formRef}) => {
             </p>
           </div>
           
-          <div className="w-full flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-3">
+          <div className="w-full flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mt-3">
             <p className="text-sm text-gray-300 whitespace-nowrap">WHO ARE YOU ?</p>
-            <div className="relative w-full sm:w-7/12">
+            <div className="relative w-full sm:w-[55%]">
               <button
                 onClick={toggleDropdown}
                 className="w-full text-left px-5 py-4 border rounded-[10px] relative pr-12 text-sm"

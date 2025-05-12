@@ -9,6 +9,7 @@ import danImg from "../assets/Dan.png";
 import hosseinImg from "../assets/Hossein.png";
 import scottImg from "../assets/Scott.png";
 
+
 // Only register the plugin once to avoid conflicts
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -18,11 +19,14 @@ export default function LeadershipTestimonial(){
   const [activeMember, setActiveMember] = useState(1)
   const containerRef = useRef(null)
   const sectionRef = useRef(null)
+  const mainImageRef = useRef(null)
+  const mainImageWrapperRef = useRef(null)
   const totalMembers = 4
   const scrollTriggerRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-  // Remove all carousel refs
+  const [isAnimating, setIsAnimating] = useState(false)
+  const prevMemberRef = useRef(1)
   
   // Check if device is mobile
   useEffect(() => {
@@ -77,23 +81,83 @@ export default function LeadershipTestimonial(){
   ]
 
   // Dynamically generate small profiles based on active member
+  // and track previous main images
   const [smallProfiles, setSmallProfiles] = useState([
-    { id: 1, image: teamMembers[1].image },
-    { id: 2, image: teamMembers[2].image },
-    { id: 3, image: teamMembers[3].image },
-  ])
-
+    { id: 1, image: teamMembers[1].image }, // Dan's image
+    { id: 2, image: teamMembers[2].image }, // Hossein's image
+    { id: 3, image: teamMembers[3].image }, // Scott's image
+  ]);
+  
+  // Update profiles when active member changes
   useEffect(() => {
-    // Update small profiles to exclude the active member's image and cycle through others
-    const currentMemberData = teamMembers.find((m) => m.id === activeMember)
-    const availableMembers = teamMembers.filter((m) => m.id !== activeMember)
-    const newSmallProfiles = [
-      { id: 1, image: availableMembers[0].image },
-      { id: 2, image: availableMembers[1].image },
-      { id: 3, image: availableMembers[2].image },
-    ]
-    setSmallProfiles(newSmallProfiles)
-  }, [activeMember])
+    // Skip on initial render
+    if (prevMemberRef.current === activeMember) return;
+    
+    // Create an ordered array based on active member
+    let orderedMembers = [];
+    
+    // First determine the starting position based on active member
+    switch(activeMember) {
+      case 1: // Mark is main
+        orderedMembers = [
+          { id: 2, image: teamMembers[1].image }, // Dan's image
+          { id: 3, image: teamMembers[2].image }, // Hossein's image
+          { id: 4, image: teamMembers[3].image }, // Scott's image
+        ];
+        break;
+      case 2: // Dan is main
+        orderedMembers = [
+          { id: 1, image: teamMembers[0].image }, // Mark's image
+          { id: 3, image: teamMembers[2].image }, // Hossein's image
+          { id: 4, image: teamMembers[3].image }, // Scott's image
+        ];
+        break;
+      case 3: // Hossein is main
+        orderedMembers = [
+          { id: 1, image: teamMembers[0].image }, // Mark's image
+          { id: 2, image: teamMembers[1].image }, // Dan's image
+          { id: 4, image: teamMembers[3].image }, // Scott's image
+        ];
+        break;
+      case 4: // Scott is main
+        orderedMembers = [
+          { id: 1, image: teamMembers[0].image }, // Mark's image
+          { id: 2, image: teamMembers[1].image }, // Dan's image
+          { id: 3, image: teamMembers[2].image }, // Hossein's image
+        ];
+        break;
+      default:
+        orderedMembers = [
+          { id: 2, image: teamMembers[1].image },
+          { id: 3, image: teamMembers[2].image },
+          { id: 4, image: teamMembers[3].image },
+        ];
+    }
+    
+    // Update small profiles
+    setSmallProfiles(orderedMembers);
+    
+    // Update previous member reference
+    prevMemberRef.current = activeMember;
+  }, [activeMember, teamMembers]);
+
+  // Animation for changing profile images - simplified version without 3D effects
+  useEffect(() => {
+    if (!mainImageRef.current || !mainImageWrapperRef.current) return;
+    
+    // Skip animation on first render
+    if (prevMemberRef.current === activeMember) return;
+    
+    // Add a small transition effect without 3D rotation
+    mainImageRef.current.style.transition = "opacity 0.3s ease";
+    mainImageRef.current.style.opacity = "0";
+    
+    // After a short delay, change the image and fade it back in
+    setTimeout(() => {
+      mainImageRef.current.src = teamMembers.find(m => m.id === activeMember).image;
+      mainImageRef.current.style.opacity = "1";
+    }, 150);
+  }, [activeMember, teamMembers, isMobile]);
 
   useEffect(() => {
     const container = containerRef.current
@@ -285,15 +349,22 @@ export default function LeadershipTestimonial(){
     };
   }, [totalMembers]);
 
-  // Remove all animation effects
-  
   const handlePagination = (index) => {
-    setActiveMember(index)
+    if (index !== activeMember) {
+      setActiveMember(index);
+    }
   }
 
   const currentMember = teamMembers.find((member) => member.id === activeMember) || teamMembers[0]
   
-  // Remove carousel items
+  // Handle arrow navigation
+  const handleArrowNavigation = (direction) => {
+    if (direction === 'prev') {
+      setActiveMember(prev => prev > 1 ? prev - 1 : totalMembers);
+    } else {
+      setActiveMember(prev => prev < totalMembers ? prev + 1 : 1);
+    }
+  };
 
   return (
     <div
@@ -335,12 +406,16 @@ export default function LeadershipTestimonial(){
             {/* Main profile image */}
             <div className="main-profile relative mx-2">
               <div className="absolute inset-1 border-r-2 border-b-2 border-[#B94C99] transform translate-x-1 translate-y-1"></div>
-              <div className="w-[200px] h-[165px] md:w-[306px] md:h-[253px] overflow-hidden flex items-center justify-center">
+              <div 
+                ref={mainImageWrapperRef} 
+                className="w-[200px] h-[165px] md:w-[306px] md:h-[253px] overflow-hidden flex items-center justify-center"
+              >
                 <img
+                  ref={mainImageRef}
                   src={currentMember.image || "/placeholder.svg"}
                   alt={currentMember.name}
                   className="w-full h-full object-cover"
-                  key={`main-mobile-${activeMember}`}
+                  key={`main-mobile-base`}
                 />
               </div>
             </div>
@@ -361,7 +436,7 @@ export default function LeadershipTestimonial(){
                 <button
                   className="text-gray-400 hover:text-white transition-colors"
                   style={{ margin: "2px" }}
-                  onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
+                  onClick={() => handleArrowNavigation('prev')}
                 >
                   <img
                     src={arrrowupimg}
@@ -372,7 +447,7 @@ export default function LeadershipTestimonial(){
                 <button
                   className="text-gray-400 hover:text-white transition-colors"
                   style={{ margin: "2px" }}
-                  onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
+                  onClick={() => handleArrowNavigation('next')}
                 >
                   <img
                     src={arrowdownimg}
@@ -450,7 +525,7 @@ export default function LeadershipTestimonial(){
               <img
                 src={smallProfiles[0].image || "/placeholder.svg"}
                 alt="Team member"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
                 key={`small-top-${activeMember}`}
               />
             </div>
@@ -460,7 +535,7 @@ export default function LeadershipTestimonial(){
               <img
                 src={smallProfiles[1].image || "/placeholder.svg"}
                 alt="Team member"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
                 key={`small-middle-${activeMember}`}
               />
             </div>
@@ -468,12 +543,17 @@ export default function LeadershipTestimonial(){
             {/* Main profile image */}
             <div className="main-profile relative mb-5 md:mb-6">
               <div className="absolute inset-1 border-r-4 border-b-4 border-[#B94C99] transform translate-x-2 translate-y-2"></div>
-              <div className="w-[253px] h-[309px] overflow-hidden flex items-center justify-center">
+              <div 
+                ref={mainImageWrapperRef} 
+                className="w-[253px] h-[309px] overflow-hidden flex items-center justify-center"
+              >
                 <img
+                  ref={mainImageRef}
                   src={currentMember.image || "/placeholder.svg"}
                   alt={currentMember.name}
                   className="w-full h-full object-cover"
                   key={`main-${activeMember}`}
+                  style={{ transition: "opacity 0.3s ease" }}
                 />
               </div>  
             </div>
@@ -483,7 +563,7 @@ export default function LeadershipTestimonial(){
               <img
                 src={smallProfiles[2].image || "/placeholder.svg"}
                 alt="Team member"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
                 key={`small-bottom-${activeMember}`}
               />
             </div>
@@ -525,11 +605,11 @@ export default function LeadershipTestimonial(){
             </div>
 
             {/* Vertical arrows - Now positioned to the right */}
-            <div className="arrows absolute  gap-4 right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
+            <div className="arrows absolute gap-4 right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
               <button
                 className="text-gray-400 hover:text-white transition-colors"
                 style={{ margin: "2px" }}
-                onClick={() => setActiveMember((prev) => (prev > 1 ? prev - 1 : totalMembers))}
+                onClick={() => handleArrowNavigation('prev')}
               >
                 <img
                   src={arrrowupimg}
@@ -540,7 +620,7 @@ export default function LeadershipTestimonial(){
               <button
                 className="text-gray-400 hover:text-white transition-colors"
                 style={{ margin: "2px" }}
-                onClick={() => setActiveMember((prev) => (prev < totalMembers ? prev + 1 : 1))}
+                onClick={() => handleArrowNavigation('next')}
               >
                 <img
                   src={arrowdownimg}
