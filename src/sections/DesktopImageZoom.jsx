@@ -139,7 +139,7 @@ const DesktopImageZoom = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-center items-center">
-            <div className="w-10/12">
+            <div className="w-11/12 2xl:w-10/12">
               <div className="text-center relative overflow-visible">
                 <h1 
                   ref={titleRef} 
