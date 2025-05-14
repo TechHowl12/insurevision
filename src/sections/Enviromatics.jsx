@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import Arrow from "../assets/arrowdown.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AccessExtractImg from "../assets/Access&Extract.webp";
-import AnalyzePredictImg from "../assets/Analyze&Predict.webp";
-import CoachImproveImg from "../assets/Coach&Improve.webp";
+import AccessExtractImg from "../assets/Access&Extract.png";
+import AnalyzePredictImg from "../assets/Analyze&Predict.png";
+import CoachImproveImg from "../assets/Coach&Improve.png";
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -66,7 +66,7 @@ const Enviromatics = () => {
 
   // Check for mobile viewport
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => setIsMobile(window.innerWidth < 769);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -175,13 +175,13 @@ const Enviromatics = () => {
           <h3 className="text-sm uppercase text-center tracking-widest font-bold">
             introducing
           </h3>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-wider text-center uppercase mt-2">
+          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-wider text-center uppercase mt-2">
             Enviromatics
           </h1>
           <h1 className="text-2xl sm:text-3xl font-normal tracking-wider text-center uppercase mt-2">
             Telematics 2.0
           </h1>
-          <p className="text-[#b94c99] text-center capitalize text-xs sm:text-sm mt-4 font-medium">
+          <p className="text-primary text-center capitalize text-xs sm:text-sm mt-4 font-medium">
             technology built based on real world scenarios
           </p>
         </div>
@@ -198,12 +198,12 @@ const Enviromatics = () => {
                   setProgress(0);
                   setConnectorProgress(0);
                 }}
-                className={`border uppercase whitespace-nowrap rounded-full py-4 text-xs w-full flex items-center justify-between pl-4 overflow-hidden
+                className={`border uppercase whitespace-nowrap rounded-full py-4 text-xs md:text-[10px] w-full flex items-center justify-between pl-4 overflow-hidden
                   ${activeButton === index ? "flex" : "hidden"} 
                   md:flex                                             
                   ${
                     activeButton === index
-                      ? "border-[#b94c99]"
+                      ? "border-primary"
                       : "border-slate-200"
                   }
                 `}
@@ -220,7 +220,7 @@ const Enviromatics = () => {
                             : `${progress}%`
                           : "0%",
                       backgroundColor:
-                        activeButton === index ? "#b94c99" : "#fff",
+                        activeButton === index ? "#FF4066" : "#fff",
                     }}
                   />
                   <div className="h-full flex-1 bg-white" />
@@ -237,7 +237,7 @@ const Enviromatics = () => {
                           : "0%",
                       backgroundColor:
                         activeButton === index && connectorProgress > 0
-                          ? "#b94c99"
+                          ? "#FF4066"
                           : "white",
                     }}
                   />
@@ -275,11 +275,11 @@ const Enviromatics = () => {
 
         {/* Content Section */}
         <div className="mt-3 md:mt-7 flex items-center flex-col sm:flex-row w-full md:w-11/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
-          <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 justify-between py-3">
-            <h4 className="text-slate-200 text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize h-32 md:h-36">
+          <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 md:gap-y-2 lg:gap-y-7 justify-between py-3">
+            <h4 className="text-slate-200 text-sm md:text-xs lg:text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize h-28 lg:h-36">
               {currentStep.description}
             </h4>
-            <div className="flex flex-col gap-7">
+            <div className="flex flex-col gap-7 max-md:gap-2">
               {currentStep.bullets.map((line, idx) => (
                 <div key={idx} className="flex items-center gap-x-5">
                   <svg
@@ -301,7 +301,7 @@ const Enviromatics = () => {
                       cx="50"
                       cy="50"
                       r="20"
-                      stroke="#b94c99"
+                      stroke="#FF4066"
                       strokeWidth="1"
                       fill="none"
                     />
@@ -312,7 +312,7 @@ const Enviromatics = () => {
             </div>
           </div>
           <div className="w-full sm:w-1/2 xl:w-4/12">
-            <div className="relative overflow-hidden mx-auto h-full md:h-96">
+            <div className="relative overflow-hidden mx-auto h-full lg:h-96">
               {/* Background image */}
               <img 
                 src={currentStep.bgImage} 

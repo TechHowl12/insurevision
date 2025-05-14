@@ -42,7 +42,7 @@ like humans`;
 
     // Add the color animation to the timeline
     tl.to(letters, {
-      color: "#b94c99",
+      color: "#FF4066",
       ease: "power1.inOut",
       stagger: {
         each: 0.02,
@@ -55,11 +55,11 @@ like humans`;
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: "+=300%",
+      end: "+=100%",
       pin: true,
       pinSpacing: true,
       id: "typography-pin", // Unique ID to avoid conflicts
-      scrub: 0.5,
+      scrub: 0.3,
       anticipatePin: 1,
       onUpdate: (self) => {
         // Only update timeline progress during scroll
@@ -87,9 +87,9 @@ like humans`;
           
       <div
         ref={containerRef}
-        className="text-white w-11/12 md:w-9/12 lg:w-10/12 2xl:w-10/12 mx-auto text-center z-40"
+        className="text-white w-11/12 md:w-11/12 lg:w-10/12 2xl:w-10/12 mx-auto text-center z-40"
       >
-        <h1 className="text-2xl md:text-4xl md:mt-[20vh] 2xl:mt-[30vh] tracking-normal md:leading-relaxed">
+        <h1 className="text-2xl md:text-2xl lg:text-4xl mt-0 lg:mt-[20vh] 2xl:mt-[30vh] tracking-normal md:leading-relaxed">
     
           {chars.map((char, i) => (
             <span key={i} className="char">
@@ -97,7 +97,7 @@ like humans`;
             </span>
           ))}
         </h1>
-        <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-60" />
+        <img src={Down} alt="down" className="mx-auto hidden lg:block my-2 h-36 md:h-60" />
       </div>
      
     </div>

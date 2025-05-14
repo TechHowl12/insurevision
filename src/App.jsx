@@ -12,16 +12,19 @@ import DesktopImageZoom from "./sections/DesktopImageZoom.jsx";
 import Hero from "./sections/Hero.jsx";
 
 function App() {
-
   const formRef = useRef(null);
   const leaderRef = useRef(null);
   const enviromaticsRef = useRef(null);
   const typoRef = useRef(null);
 
-  const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToLeadership = () => leaderRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToTypography = () => typoRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToEnviromatics = () => enviromaticsRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToForm = () =>
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToLeadership = () =>
+    leaderRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToTypography = () =>
+    typoRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToEnviromatics = () =>
+    enviromaticsRef.current?.scrollIntoView({ behavior: "smooth" });
 
   const lenis = new Lenis({ autoRaf: true });
 
@@ -34,40 +37,44 @@ function App() {
   }, []);
 
   return (
-        <>
-          <Navbar
-            scrollToForm={scrollToForm}
-            scrollToTypography={scrollToTypography}
-            scrollToLeadership={scrollToLeadership}
-            scrollToEnviromatics={scrollToEnviromatics}
-          />
-          <Hero />
+    <>
+      <Navbar
+        scrollToForm={scrollToForm}
+        scrollToTypography={scrollToTypography}
+        scrollToLeadership={scrollToLeadership}
+        scrollToEnviromatics={scrollToEnviromatics}
+      />
+      <Hero />
 
-          <div ref={typoRef}>
-            <Typography />
-          </div>
+      <div ref={typoRef}>
+        <Typography />
+      </div>
 
-          <div className="block sm:hidden">
-            <MobileImageZoom />
-          </div>
-          <div className="hidden sm:block">
-            <DesktopImageZoom />
-          </div>
+      <div className="block lg:hidden">
+        <MobileImageZoom />
+      </div>
+      <div className="hidden lg:block">
+        <DesktopImageZoom />
+      </div>
 
-          <div className="mt-0 md:mt-40" ref={enviromaticsRef}>
-            <Enviromatics />
-          </div>
+      <div className="mt-0 md:mt-40" ref={enviromaticsRef}>
+        <Enviromatics />
+      </div>
 
-          <div ref={leaderRef}>
-            <LeadershipTestimonial />
-          </div>
+      <div ref={leaderRef}>
+        <LeadershipTestimonial />
+      </div>
 
-          <div ref={formRef}>
-            <ContactForm />
-          </div>
+      <div ref={formRef}>
+        <ContactForm />
+      </div>
 
-          <Footer />
-        </>
+      <Footer
+        scrollToTypography={scrollToTypography}
+        scrollToLeadership={scrollToLeadership}
+        scrollToEnviromatics={scrollToEnviromatics}
+      />
+    </>
   );
 }
 

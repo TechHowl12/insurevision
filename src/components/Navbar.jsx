@@ -30,8 +30,8 @@ const Navbar = ({
   }, []);
 
   const toggleMenu = () => {
-    setIsScrolled((prev) => !prev);
-    setShowMenu((prev) => !prev); // Toggle the menu visibility on click
+    setIsScrolled(!isScrolled);
+    setShowMenu(!showMenu); // Toggle the menu visibility on click
   };
 
   return (
@@ -41,7 +41,7 @@ const Navbar = ({
         <div className="flex items-center gap-x-3">
           <img
             src={showMenu || !isScrolled ? MenuClose : MenuOpen}
-            className="cursor-pointer z-50"
+            className="cursor-pointer z-50 md:w-8 md:h-8 lg:w-10 lg:h-10"
             onClick={toggleMenu}
             alt="Menu"
           />
@@ -56,19 +56,19 @@ const Navbar = ({
           >
             <button
               onClick={scrollToTypography}
-              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+              className="rounded-full bg-[#0E000b] text-[10px] lg:text-xs w-16 lg:w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-1 lg:py-2 transition-all duration-300"
             >
               Solution
             </button>
             <button
               onClick={scrollToEnviromatics}
-              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+              className="rounded-full bg-[#0E000b] text-[10px] lg:text-xs w-16 lg:w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-1 lg:py-2 transition-all duration-300"
             >
               Software
             </button>
             <button
               onClick={scrollToLeadership}
-              className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300"
+              className="rounded-full bg-[#0E000b] text-[10px] lg:text-xs w-16 lg:w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-1 lg:py-2 transition-all duration-300"
             >
               Leadership
             </button>
@@ -78,7 +78,7 @@ const Navbar = ({
         {/* Center Logo (Hide on scroll) */}
         <img
           src={Logo}
-          className={`absolute left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
+          className={`absolute md:w-28 lg:w-auto left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
             isScrolled ? "opacity-0" : "opacity-100"
           }`}
           alt="Logo"
@@ -98,17 +98,17 @@ const Navbar = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300">
+              <button className="rounded-full bg-[#0E000b] text-[10px] lg:text-xs w-16 lg:w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-1 lg:py-2 transition-all duration-300">
                 LinkedIn
               </button>
             </a>
-            <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-[#b94c99] text-white hover:bg-white hover:text-[#b94c99] py-2 transition-all duration-300">
+            {/* <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-2 transition-all duration-300">
               Blogs
-            </button>
+            </button> */}
           </div>
           <button
             onClick={scrollToForm}
-            className="cursor-pointer rounded-full text-xs appearance-none bg-[#b94c99] px-8 py-2 text-white uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="cursor-pointer rounded-full md:text-[10px] lg:text-xs appearance-none bg-[#FF4066] md:px-5 lg:px-8 md:py-1 lg:py-2 text-white uppercase hover:bg-[#fff] hover:text-[#FF4066] transition-all duration-300"
           >
             get in touch
           </button>
@@ -120,19 +120,19 @@ const Navbar = ({
         <div className="sm:hidden mt-1 flex flex-col gap-3 px-4 pb-4 bg-[#0E000b] rounded-b-xl">
           <button
             onClick={scrollToTypography}
-            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="rounded-full bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300"
           >
             Solution
           </button>
           <button
             onClick={scrollToEnviromatics}
-            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="rounded-full bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300"
           >
             Software
           </button>
           <button
             onClick={scrollToLeadership}
-            className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="rounded-full bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300"
           >
             Leadership
           </button>
@@ -140,16 +140,16 @@ const Navbar = ({
             href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full flex justify-center items-center bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="rounded-full flex justify-center items-center bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300"
           >
             LinkedIn
           </a>
-          <button className="rounded-full bg-[#0E000b] text-sm border border-[#b94c99] text-white py-2 hover:bg-white hover:text-[#b94c99] transition-all duration-300">
+          <button className="rounded-full bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300">
             Blogs
           </button>
           <button
             onClick={scrollToForm}
-            className="rounded-full bg-[#b94c99] text-sm text-white py-2 uppercase hover:bg-white hover:text-[#b94c99] transition-all duration-300"
+            className="rounded-full bg-primary text-sm text-white py-2 uppercase hover:bg-white hover:text-primary transition-all duration-300"
           >
             get in touch
           </button>

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react"
-import { Linkedin } from "lucide-react"
-import gsap from "gsap"
+import { useEffect, useRef, useState } from "react";
+import { Linkedin } from "lucide-react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import arrrowupimg from "../assets/arrowup.png";
 import arrowdownimg from "../assets/arrowdown.png";
@@ -27,6 +27,13 @@ export default function LeadershipTestimonial(){
   const [isMounted, setIsMounted] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const prevMemberRef = useRef(1)
+  
+  // Handle LinkedIn Redirect explicitly
+  const handleLinkedInRedirect = (e, url) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   
   // Check if device is mobile
   useEffect(() => {
@@ -156,6 +163,11 @@ export default function LeadershipTestimonial(){
     setTimeout(() => {
       mainImageRef.current.src = teamMembers.find(m => m.id === activeMember).image;
       mainImageRef.current.style.opacity = "1";
+      
+      // Make sure we're not interfering with click events
+      mainImageRef.current.onclick = (e) => {
+        e.stopPropagation();
+      };
     }, 150);
   }, [activeMember, teamMembers, isMobile]);
 
@@ -369,15 +381,15 @@ export default function LeadershipTestimonial(){
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen w-full md:w-10/12 flex items-center justify-center text-white relative overflow-hidden mx-auto"
+      className="min-h-screen w-full lg:w-10/12 flex items-center justify-center text-white relative overflow-hidden mx-auto"
     >
       <div 
         ref={containerRef}
-        className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between relative"
+        className="container mx-auto px-4 py-4 flex flex-col lg:flex-row items-center justify-between relative"
         style={{ opacity: 1, visibility: "visible" }}
       >
         {/* Mobile layout adjustment - reordering content */}
-        <div className="w-full flex flex-col md:hidden items-center justify-center mb-4 pr-2">
+        <div className="w-full flex flex-col lg:hidden items-center justify-center mb-4 pr-2">
           {/* Mobile title at the top */}
           <h1 className="leadership-title text-3xl font-bold tracking-wider mt-2 mb-4">LEADERSHIP</h1>
           
@@ -386,49 +398,73 @@ export default function LeadershipTestimonial(){
             <div className="flex flex-col space-y-3">
               {/* Small images on the side */}
               <div className="profile-image w-14 h-18 overflow-hidden">
-                <img
-                  src={smallProfiles[0].image || "/placeholder.svg"}
-                  alt="Team member"
-                  className="w-full h-full object-cover grayscale"
-                  key={`small-mobile-1-${activeMember}`}
-                />
+                <a 
+                  href={teamMembers.find(m => m.id === smallProfiles[0].id)?.linkedinUrl}
+                  onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[0].id)?.linkedinUrl)}
+                  className="w-full h-full cursor-pointer block"
+                >
+                  <img
+                    src={smallProfiles[0].image || "/placeholder.svg"}
+                    alt="Team member"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                    key={`small-mobile-1-${activeMember}`}
+                  />
+                </a>
               </div>
               <div className="profile-image w-14 h-18 overflow-hidden">
-                <img
-                  src={smallProfiles[1].image || "/placeholder.svg"}
-                  alt="Team member"
-                  className="w-full h-full object-cover grayscale"
-                  key={`small-mobile-2-${activeMember}`}
-                />
+                <a 
+                  href={teamMembers.find(m => m.id === smallProfiles[1].id)?.linkedinUrl}
+                  onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[1].id)?.linkedinUrl)}
+                  className="w-full h-full cursor-pointer block"
+                >
+                  <img
+                    src={smallProfiles[1].image || "/placeholder.svg"}
+                    alt="Team member"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                    key={`small-mobile-2-${activeMember}`}
+                  />
+                </a>
               </div>
             </div>
             
-            {/* Main profile image */}
+            {/* Main profile image - MOBILE */}
             <div className="main-profile relative mx-2">
-              <div className="absolute inset-1 border-r-2 border-b-2 border-[#B94C99] transform translate-x-1 translate-y-1"></div>
+              <div className="absolute inset-1 border-r-2 border-b-2 border-primary transform translate-x-1 translate-y-1"></div>
               <div 
                 ref={mainImageWrapperRef} 
-                className="w-[200px] h-[165px] md:w-[306px] md:h-[253px] overflow-hidden flex items-center justify-center"
+                className="w-[200px] h-[165px] lg:w-[306px] lg:h-[253px] overflow-hidden flex items-center justify-center"
               >
-                <img
-                  ref={mainImageRef}
-                  src={currentMember.image || "/placeholder.svg"}
-                  alt={currentMember.name}
-                  className="w-full h-full object-cover"
-                  key={`main-mobile-base`}
-                />
+                <a 
+                  href={currentMember.linkedinUrl}
+                  onClick={(e) => handleLinkedInRedirect(e, currentMember.linkedinUrl)}
+                  className="w-full h-full cursor-pointer relative"
+                >
+                  <img
+                    ref={mainImageRef}
+                    src={currentMember.image || "/placeholder.svg"}
+                    alt={currentMember.name}
+                    className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                    key={`main-mobile-base`}
+                  />
+                </a>
               </div>
             </div>
             
             <div className="flex flex-col space-y-3">
               {/* Small images on the other side */}
               <div className="profile-image w-14 h-18 overflow-hidden">
-                <img
-                  src={smallProfiles[2].image || "/placeholder.svg"}
-                  alt="Team member"
-                  className="w-full h-full object-cover grayscale"
-                  key={`small-mobile-3-${activeMember}`}
-                />
+                <a 
+                  href={teamMembers.find(m => m.id === smallProfiles[2].id)?.linkedinUrl}
+                  onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[2].id)?.linkedinUrl)}
+                  className="w-full h-full cursor-pointer block"
+                >
+                  <img
+                    src={smallProfiles[2].image || "/placeholder.svg"}
+                    alt="Team member"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                    key={`small-mobile-3-${activeMember}`}
+                  />
+                </a>
               </div>
               
               {/* Vertical arrows for mobile - moved to the side */}
@@ -460,8 +496,8 @@ export default function LeadershipTestimonial(){
           </div>
           
           {/* Name and title */}
-          <div className="name-title text-center mt-2 mb-3" key={`name-mobile-${activeMember}`}>
-            <div className="text-xs text-[#B94C99] mb-1">MEET</div>
+          <div className="name-title w-2xl text-center mt-2 mb-3" key={`name-mobile-${activeMember}`}>
+            <div className="text-xs text-primary mb-1">MEET</div>
             <h2 className="text-2xl font-bold">{currentMember.name}</h2>
             <div className="mt-1 text-xs text-gray-400">{currentMember.title}</div>
           </div>
@@ -481,8 +517,8 @@ export default function LeadershipTestimonial(){
                   key={`pagination-mobile-${member.id}`}
                   onClick={() => handlePagination(member.id)}
                   className={`w-6 h-6 border ${
-                    activeMember === member.id ? 'border-[#B94C99] text-[#B94C99]' : 'border-gray-700 text-gray-700'
-                  } flex items-center justify-center hover:border-[#B94C99] hover:text-[#B94C99] transition-colors text-xs`}
+                    activeMember === member.id ? 'border-primary text-primary' : 'border-gray-700 text-gray-700'
+                  } flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-xs`}
                 >
                   {member.id || "N/A"}
                 </button>
@@ -494,8 +530,8 @@ export default function LeadershipTestimonial(){
           
           {/* Bio text at the bottom */}
           <div className="bio-container w-full mt-1 mb-3 flex justify-center">
-            <div className="bio-box relative py-8 px-8 border border-[#B94C99] w-[300px] md:w-[306px] text-center"
-              style={{ width: "455px", height: "180px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
+            <div className="bio-box relative py-8 px-8 border border-primary flex justify-center items-center w-[300px] lg:w-[306px] text-center"
+              style={{ width: "455px", height: "130px", minHeight: "130px", maxHeight: "130px", textAlign: "right" }}
             >
               <p className="bio-text text-xs text-right text-gray-300" key={`bio-mobile-${activeMember}`}>{currentMember.bio}</p>
             </div>
@@ -503,104 +539,128 @@ export default function LeadershipTestimonial(){
         </div>
 
         {/* Original desktop layout - hide on mobile */}
-        <div className="hidden md:flex md:flex-row md:w-full md:pr-30 items-center justify-center">
+        <div className="hidden lg:flex lg:flex-row lg:w-full lg:pr-30 items-center justify-center">
           {/* Left side - Title and Bio */}
-          <div className="w-full md:w-[140%] flex flex-col items-center justify-center z-10 md:ml-22 md:mt-40">
+          <div className="w-full lg:w-[140%] flex flex-col items-center justify-center z-10 lg:ml-22 lg:mt-40">
             <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider">LEADERSHIP</h1>
 
             {/* Bio with border box that's attached to the image */}
-            <div className="bio-container w-full md:ml-10 ml-20 mt-16 flex justify-center">
-              <div className="bio-box relative pr-2 border-t border-l border-b border-[#B94C99] text-center ml-2 md:ml-4"
-                style={{ width: "455px", height: "180px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
+            <div className="bio-container w-full lg:ml-10 ml-20 mt-16 flex justify-center">
+              <div className="bio-box relative flex justify-center items-center pr-2 border-t border-l border-b border-primary text-center ml-2 lg:ml-4"
+                style={{ width: "455px", height: "160px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
               >
-                <p className="bio-text text-xs px-4 py-10 text-right sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
+                <p className="bio-text text-xs px-4 text-right sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
               </div>
             </div>
           </div>
 
           {/* Center - Profile Images */}
-          <div className="w-full md:w-1/2 flex flex-col items-start justify-center relative my-6 md:my-0">
+          <div className="w-full lg:w-1/2 flex flex-col items-start justify-center relative my-6 lg:my-0">
             {/* Small profile image top */}
-            <div className="profile-image mb-5 md:mb-6 w-20 md:w-24 h-24 md:h-32 overflow-hidden">
-              <img
-                src={smallProfiles[0].image || "/placeholder.svg"}
-                alt="Team member"
-                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
-                key={`small-top-${activeMember}`}
-              />
+            <div className="profile-image mb-5 lg:mb-6 w-20 lg:w-24 h-24 lg:h-32 overflow-hidden">
+              <a 
+                href={teamMembers.find(m => m.id === smallProfiles[0].id)?.linkedinUrl}
+                onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[0].id)?.linkedinUrl)}
+                className="w-full h-full cursor-pointer block"
+              >
+                <img
+                  src={smallProfiles[0].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all"
+                  key={`small-top-${activeMember}`}
+                />
+              </a>
             </div>
 
             {/* Small profile image middle-top */}
-            <div className="profile-image mb-5 md:mb-6 w-20 md:w-24 h-24 md:h-32 overflow-hidden">
-              <img
-                src={smallProfiles[1].image || "/placeholder.svg"}
-                alt="Team member"
-                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
-                key={`small-middle-${activeMember}`}
-              />
+            <div className="profile-image mb-5 lg:mb-6 w-20 lg:w-24 h-24 lg:h-32 overflow-hidden">
+              <a 
+                href={teamMembers.find(m => m.id === smallProfiles[1].id)?.linkedinUrl}
+                onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[1].id)?.linkedinUrl)}
+                className="w-full h-full cursor-pointer block"
+              >
+                <img
+                  src={smallProfiles[1].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all"
+                  key={`small-middle-${activeMember}`}
+                />
+              </a>
             </div>
 
-            {/* Main profile image */}
-            <div className="main-profile relative mb-5 md:mb-6">
-              <div className="absolute inset-1 border-r-4 border-b-4 border-[#B94C99] transform translate-x-2 translate-y-2"></div>
+            {/* Main profile image - DESKTOP */}
+            <div className="main-profile relative mb-5 lg:mb-6">
+              <div className="absolute inset-1 border-r-4 border-b-4 border-primary transform translate-x-2 translate-y-2"></div>
               <div 
                 ref={mainImageWrapperRef} 
                 className="w-[253px] h-[309px] overflow-hidden flex items-center justify-center"
               >
-                <img
-                  ref={mainImageRef}
-                  src={currentMember.image || "/placeholder.svg"}
-                  alt={currentMember.name}
-                  className="w-full h-full object-cover"
-                  key={`main-${activeMember}`}
-                  style={{ transition: "opacity 0.3s ease" }}
-                />
+                <a 
+                  href={currentMember.linkedinUrl}
+                  onClick={(e) => handleLinkedInRedirect(e, currentMember.linkedinUrl)}
+                  className="w-full h-full cursor-pointer relative"
+                >
+                  <img
+                    ref={mainImageRef}
+                    src={currentMember.image || "/placeholder.svg"}
+                    alt={currentMember.name}
+                    className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                    key={`main-${activeMember}`}
+                    style={{ transition: "opacity 0.3s ease" }}
+                  />
+                </a>
               </div>  
             </div>
 
             {/* Small profile image bottom */}
-            <div className="profile-image w-20 md:w-24 h-24 md:h-32 overflow-hidden">
-              <img
-                src={smallProfiles[2].image || "/placeholder.svg"}
-                alt="Team member"
-                className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity"
-                key={`small-bottom-${activeMember}`}
-              />
+            <div className="profile-image w-20 lg:w-24 h-24 lg:h-32 overflow-hidden">
+              <a 
+                href={teamMembers.find(m => m.id === smallProfiles[2].id)?.linkedinUrl}
+                onClick={(e) => handleLinkedInRedirect(e, teamMembers.find(m => m.id === smallProfiles[2].id)?.linkedinUrl)}
+                className="w-full h-full cursor-pointer block"
+              >
+                <img
+                  src={smallProfiles[2].image || "/placeholder.svg"}
+                  alt="Team member"
+                  className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all"
+                  key={`small-bottom-${activeMember}`}
+                />
+              </a>
             </div>
           </div>
 
           {/* Right side - Name, Title, Social */}
-          <div className="w-full flex md:m-20 flex-col ml-[2%] lg:mr[5%] items-center md:items-start justify-center z-10">
-            <div className="name-title text-center md:text-left mt-6 md:mt-56 mb-4 md:mb-8" key={`name-${activeMember}`}>
-              <div className="text-xs md:text-sm text-[#B94C99] mb-1 md:mb-2">MEET</div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
-              <div className="mt-2 md:mt-4 text-xs md:text-sm text-gray-400">{currentMember.title}</div>
+          <div className="w-full flex lg:m-20 flex-col ml-[2%] lg:mr[5%] items-center lg:items-start justify-center z-10">
+            <div className="name-title text-center lg:text-left mt-6 lg:mt-56 mb-4 lg:mb-8" key={`name-${activeMember}`}>
+              <div className="text-xs lg:text-sm text-primary mb-1 lg:mb-2">MEET</div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
+              <div className="mt-2 lg:mt-4 text-xs lg:text-sm text-gray-400">{currentMember.title}</div>
             </div>
 
             {/* Social icons */}
-            <div className="social-icons flex space-x-4 mb-4 md:mb-6">
+            <div className="social-icons flex space-x-4 mb-4 lg:mb-6">
               <a href={currentMember.linkedinUrl} className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin size={18} />
               </a>
             </div>
 
             {/* Pagination - Now below social icons */}
-            <div className="w-32 md:w-40 h-8 md:h-10 flex space-x-2 mt-2 md:mt-4 mb-4 md:mb-8 z-20">
+            <div className="w-32 lg:w-40 h-8 lg:h-10 flex space-x-2 mt-2 lg:mt-4 mb-4 lg:mb-8 z-20">
               {teamMembers && teamMembers.length > 0 ? (
                 teamMembers.map((member) => (
                   <button
                     key={member.id}
                     onClick={() => handlePagination(member.id)}
-                    className={`w-8 md:w-10 h-8 md:h-10 border ${
-                      activeMember === member.id ? 'border-[#B94C99] text-[#B94C99]' : 'border-gray-700 text-gray-700'
-                    } flex items-center justify-center hover:border-[#B94C99] hover:text-[#B94C99] transition-colors text-xs md:text-sm`}
+                    className={`w-8 lg:w-10 h-8 lg:h-10 border ${
+                      activeMember === member.id ? 'border-primary text-primary' : 'border-gray-700 text-gray-700'
+                    } flex items-center justify-center hover:border-primary hover:text-primary transition-colors text-xs lg:text-sm`}
                   >
                     {member.id || "N/A"}
                   </button>
                 ))
               ) : (
-                <div className="text-gray-400 text-xs md:text-sm">No team members to display</div>
+                <div className="text-gray-400 text-xs lg:text-sm">No team members to display</div>
               )}
             </div>
 
@@ -635,9 +695,9 @@ export default function LeadershipTestimonial(){
 
       {/* Second section that appears after scrolling through first section */}
       <div className={`absolute ${isMobile ? 'top-[200%]' : 'top-[400%]'} left-0 w-full min-h-screen bg-black flex items-center justify-center`}>
-        <div className="container mx-auto px-4 py-8 md:py-16 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-8">Our Vision</h2>
-          <p className="text-sm sm:text-base md:text-xl max-w-3xl mx-auto">
+        <div className="container mx-auto px-4 py-8 lg:py-16 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-8">Our Vision</h2>
+          <p className="text-sm sm:text-base lg:text-xl max-w-3xl mx-auto">
             We're building the future of insurance technology, combining AI, hardware innovation,
             and data science to create solutions that change the industry.
           </p>

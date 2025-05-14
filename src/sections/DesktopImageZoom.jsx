@@ -143,7 +143,7 @@ const DesktopImageZoom = () => {
               <div className="text-center relative overflow-visible">
                 <h1 
                   ref={titleRef} 
-                  className="text-white text-3xl text-center sm:text-4xl md:text-5xl mb-5 md:mb-10"
+                  className="text-white text-3xl text-center sm:text-4xl lg:text-5xl mb-5 md:mb-10"
                 >
                   How will we ensure your Safety?
                 </h1>
@@ -171,7 +171,7 @@ const DesktopImageZoom = () => {
                   >
                     <div className="flex justify-center">
                       <div className="w-full md:w-2/3 lg:w-1/2">
-                        <div className="text-center bg-black p-3 sm:p-5 md:p-10 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
+                        <div className="text-center bg-black p-3 sm:p-5 md:p-10 rounded-xl text-white border border-primary font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
                           <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl">
                             Next Gen Risk Understanding
                           </p>
@@ -183,7 +183,7 @@ const DesktopImageZoom = () => {
                             with the riskiest drivers in your fleet.
                           </p>
                         </div>
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto -mt-5 sm:-mt-6 md:-mt-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mx-auto -mt-5 sm:-mt-6 md:-mt-7 bg-black flex items-center justify-center text-white rounded-full border border-primary">
                           <span>1</span>
                         </div>
                       </div>
@@ -198,7 +198,7 @@ const DesktopImageZoom = () => {
                   >
                     <div className="flex">
                       <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col sm:flex-row items-center">
-                        <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
+                        <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-primary font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
                           <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-left">
                             Real Time Accident Prevention
                           </p>
@@ -210,7 +210,7 @@ const DesktopImageZoom = () => {
                             insurance-safer roads.
                           </p>
                         </div>
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-ml-6 md:-ml-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-ml-6 md:-ml-7 bg-black flex items-center justify-center text-white rounded-full border border-primary">
                           <span>2</span>
                         </div>
                       </div>
@@ -225,7 +225,7 @@ const DesktopImageZoom = () => {
                   >
                     <div className="flex justify-end">
                       <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col-reverse sm:flex-row-reverse items-center">
-                        <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
+                        <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-primary font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
                           <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-right whitespace-nowrap">
                             Super Charge Existing Video Telematics
                           </p>
@@ -237,7 +237,7 @@ const DesktopImageZoom = () => {
                             you already have.
                           </p>
                         </div>
-                        <div className="z-40 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-mr-6 md:-mr-7 bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
+                        <div className="z-40 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mt-4 sm:mt-0 sm:-mr-6 md:-mr-7 bg-black flex items-center justify-center text-white rounded-full border border-primary">
                           <span>3</span>
                         </div>
                       </div>

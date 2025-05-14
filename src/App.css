@@ -23,3 +23,12 @@ body{
 button{
  cursor: pointer;
 }
+.text-primary{
+  color: #FF4066;
+}
+.bg-primary{
+  background-color: #FF4066;
+}
+.border-primary{
+  border-color:#FF4066;
+}

@@ -86,7 +86,7 @@ const MobileImageZoom = () => {
   return (
     <>
       <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-56" />
-      <h1 className="text-white text-3xl text-center sm:text-4xl md:text-5xl mb-5 md:mb-10">
+      <h1 className="text-white text-3xl text-center sm:text-4xl md:text-3xl mb-5 md:mb-10">
         How will we ensure your Safety?
       </h1>
       <section ref={sectionRef} className="block overflow-visible py-5">
@@ -126,7 +126,7 @@ const MobileImageZoom = () => {
                   }`}
                   style={{ display: "none" }}
                 >
-                  <div className="bg-black p-2 rounded-xl text-white border border-[#b94C99] font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)] text-center">
+                  <div className="bg-black p-2 rounded-xl text-white border border-primary font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)] text-center">
                     <p className="font-bold text-lg">{title}</p>
                     <p className="text-xs mt-2">
                       {
@@ -137,7 +137,7 @@ const MobileImageZoom = () => {
                         ][i]
                       }
                     </p>
-                    <div className="w-8 h-8 mt-4 mx-auto bg-black flex items-center justify-center text-white rounded-full border border-[#b94C99]">
+                    <div className="w-8 h-8 mt-4 mx-auto bg-black flex items-center justify-center text-white rounded-full border border-primary">
                       <span>{i + 1}</span>
                     </div>
                   </div>
