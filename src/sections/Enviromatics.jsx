@@ -89,7 +89,7 @@ const Enviromatics = () => {
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=200%", // More space for complete cycle
+        end: "+=50%", // More space for complete cycle
         pin: !isMobile, // Only pin on desktop
         pinSpacing:!isMobile, // Only add pin spacing on desktop
         anticipatePin: 1,
@@ -142,10 +142,10 @@ const Enviromatics = () => {
     
     const runAnimation = () => {
       if (progress < 100) {
-        setProgress((p) => p + 3.5);
+        setProgress((p) => p + 4);
         animationTimer = setTimeout(runAnimation, progressInterval);
       } else if (connectorProgress < 100) {
-        setConnectorProgress((cp) => cp + 6);
+        setConnectorProgress((cp) => cp + 7);
         animationTimer = setTimeout(runAnimation, connectorInterval);
       } else {
         // Move to next step
@@ -276,7 +276,7 @@ const Enviromatics = () => {
         {/* Content Section */}
         <div className="mt-3 md:mt-7 flex items-center flex-col sm:flex-row w-full md:w-11/12 mx-auto justify-center gap-x-5 gap-y-5 sm:gap-y-0">
           <div className="w-full sm:w-1/2 xl:w-5/12 flex flex-col gap-y-7 md:gap-y-2 lg:gap-y-7 justify-between py-3">
-            <h4 className="text-slate-200 text-sm md:text-xs lg:text-sm 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize h-28 lg:h-36">
+            <h4 className="text-slate-200 text-sm md:text-xs lg:text-sm xl:text-[15px] 2xl:text-lg leading-relaxed w-full sm:w-11/12 capitalize h-28 lg:h-36">
               {currentStep.description}
             </h4>
             <div className="flex flex-col gap-7 max-md:gap-2">
@@ -312,7 +312,7 @@ const Enviromatics = () => {
             </div>
           </div>
           <div className="w-full sm:w-1/2 xl:w-4/12">
-            <div className="relative overflow-hidden mx-auto h-full lg:h-96">
+            <div className="relative overflow-hidden mx-auto h-full xl:h-96">
               {/* Background image */}
               <img 
                 src={currentStep.bgImage} 

@@ -33,7 +33,7 @@ const MobileImageZoom = () => {
       .forEach((t) => t.kill());
 
     // hide everything initially
-    gsap.set([img1, img2, ...stepRefs.map((r) => r.current)], {
+    gsap.set([img2, ...stepRefs.map((r) => r.current)], {
       autoAlpha: 0,
       display: "none",
     });
@@ -49,9 +49,7 @@ const MobileImageZoom = () => {
     });
 
     // Image zoom
-    tl.set(img1, { display: "block", width: isMobile ? "25%" : "25%" })
-      .to(img1, { autoAlpha: 1, duration: 0.5 })
-      .to(img1, { width: "100%", duration: 1.5, ease: "power2.out" });
+    tl.to(img1, { width: "100%", duration: 1.5, ease: "power2.out" });
 
     // Video fade in
     tl.set(img2, { display: "block" }).to(img2, {
@@ -85,7 +83,7 @@ const MobileImageZoom = () => {
 
   return (
     <>
-      <img src={Down} alt="down" className="mx-auto mb-2 h-36 md:h-56" />
+      <img src={Down} alt="down" className="mx-auto my-3 h-36 md:h-56" />
       <h1 className="text-white text-3xl text-center sm:text-4xl md:text-3xl mb-5 md:mb-10">
         How will we ensure your Safety?
       </h1>
@@ -93,12 +91,12 @@ const MobileImageZoom = () => {
         <div className="container h-[830px] mx-auto px-4 mt-10 text-center">
           <div className="relative flex flex-col items-center justify-center">
             {/* Image + Video */}
-            <div className="relative w-full flex justify-center">
+            <div className="relative w-full md:w-10/12 flex justify-center">
               <img
                 ref={img1Ref}
                 src={roadrimg}
                 alt="Road"
-                className="rounded-md grayscale opacity-0"
+                className="rounded-md grayscale opacity-100"
                 style={{ width: "25%" }}
               />
               <video
@@ -112,7 +110,7 @@ const MobileImageZoom = () => {
             </div>
 
             {/* Step Cards */}
-            <div className="flex flex-col items-center w-full mt-8">
+            <div className="flex flex-col items-center w-full md:w-10/12 mt-8">
               {[
                 "Next Gen Risk Understanding",
                 "Real Time Accident Prevention",
@@ -121,7 +119,7 @@ const MobileImageZoom = () => {
                 <div
                   key={i}
                   ref={stepRefs[i]}
-                  className={`w-full md:w-2/3 lg:w-1/2 opacity-0 ${
+                  className={`w-full opacity-0 ${
                     i > 0 ? "mt-3" : ""
                   }`}
                   style={{ display: "none" }}

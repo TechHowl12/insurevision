@@ -51,7 +51,7 @@ const DesktopImageZoom = () => {
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: "+=4000px",
+        end: "+=1300px",
         scrub: 0.5,
         pin: true,
         markers: false,
@@ -166,16 +166,16 @@ const DesktopImageZoom = () => {
                   {/* Step 1 */}
                   <div
                     ref={step1Ref}
-                    className="absolute z-50 top-5 w-full px-4 sm:px-0"
+                    className="absolute z-50 top-1 xl:top-10 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex justify-center">
                       <div className="w-full md:w-2/3 lg:w-1/2">
-                        <div className="text-center bg-black p-3 sm:p-5 md:p-10 rounded-xl text-white border border-primary font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl">
+                        <div className="text-center bg-black p-3 md:p-7 xl:p-10 rounded-xl text-white border border-primary font-['Figtree',sans-serif] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
+                          <p className="mb-0 font-bold text-lg xl:text-2xl">
                             Next Gen Risk Understanding
                           </p>
-                          <p className="mt-2 text-xs sm:text-sm">
+                          <p className="mt-2 text-xs xl:text-sm">
                             By bringing the true context into the equation and
                             observing drivers over time, we're radically
                             increasing the accuracy of risk assessment. This
@@ -193,16 +193,16 @@ const DesktopImageZoom = () => {
                   {/* Step 2 */}
                   <div
                     ref={step2Ref}
-                    className="absolute z-50 bottom-20 2xl:bottom-35 right-30 w-full px-4 sm:px-0"
+                    className="absolute z-50 bottom-10 xl:bottom-25 right-5 xl:right-30 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex">
-                      <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col sm:flex-row items-center">
+                      <div className="w-full sm:w-[35%] xl:w-5/12 flex flex-col sm:flex-row items-center">
                         <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-primary font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-left">
+                          <p className="mb-0 font-bold text-lg xl:text-2xl text-left">
                             Real Time Accident Prevention
                           </p>
-                          <p className="mt-2 text-xs sm:text-sm text-left max-w-md">
+                          <p className="mt-2 text-xs xl:text-sm text-left max-w-md">
                             Our AI doesn't just measure risk—it anticipates it
                             in its earliest stages, alerting drivers and
                             activating preventive measures seconds before
@@ -220,16 +220,16 @@ const DesktopImageZoom = () => {
                   {/* Step 3 */}
                   <div
                     ref={step3Ref}
-                    className="absolute z-50 bottom-20 2xl:bottom-35 left-30 w-full px-4 sm:px-0"
+                    className="absolute z-50 bottom-10 xl:bottom-25 left-5 xl:left-30 w-full px-4 sm:px-0"
                     style={{ display: "none", opacity: 0 }}
                   >
                     <div className="flex justify-end">
-                      <div className="w-full sm:w-10/12 md:w-5/12 flex flex-col-reverse sm:flex-row-reverse items-center">
+                      <div className="w-full lg:w-[35%] xl:w-5/12 flex flex-col-reverse sm:flex-row-reverse items-center">
                         <div className="bg-black p-3 sm:p-5 md:p-8 rounded-xl text-white border border-primary font-['Figtree',sans-serif] w-full sm:w-[95%] shadow-[0_0_15px_rgba(185,76,153,0.3)]">
-                          <p className="mb-0 font-bold text-lg sm:text-xl 2xl:text-2xl text-right whitespace-nowrap">
+                          <p className="mb-0 font-bold text-lg xl:text-2xl text-right 2xl:whitespace-nowrap">
                             Super Charge Existing Video Telematics
                           </p>
-                          <p className="mt-2 text-xs sm:text-sm text-right max-w-md ml-auto inline-flex">
+                          <p className="mt-2 text-xs xl:text-sm text-right max-w-md ml-auto inline-flex">
                             Transform your existing dashcam infrastructure into
                             a sophisticated risk intelligence system.
                             InsureVision's hardware-agnostic platform extracts
@@ -248,7 +248,7 @@ const DesktopImageZoom = () => {
                   <video
                     ref={img2Ref}
                     src={Video}
-                    className="hidden relative opacity-0 w-[35%] transition-none rounded-md"
+                    className="hidden relative opacity-0 w-[35%] mt-[40px] transition-none rounded-md"
                     autoPlay
                     muted
                     loop

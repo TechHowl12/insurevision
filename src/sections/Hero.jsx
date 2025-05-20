@@ -1,22 +1,100 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Lines from "../assets/line-mask.png";
 import Up from "../assets/up-line.png";
 import Down from "../assets/down-line.png";
-import Banner from "../assets/BannerHotPink.webp";
-import LineArt from "../assets/LineArt.mp4";
+import Banner from "../assets/BannerPink.webp";
+import LineArt from "../assets/animation.mp4";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Hero = () => {
+const Hero = ({typoRef}) => {
+  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const text = `Humans drive cars and understand risk with our eyes, not gps and
+  accelerometer data. We focus our attention on danger rather than on
+  counting and classifying road objects. Our understanding is based on our
+  experience as drivers... InsureVision analyses risk contextually just
+  like humans`;
+  const chars = Array.from(text);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const section = sectionRef.current;
+    const letters = container.querySelectorAll(".char");
+
+    // Clear any previous ScrollTrigger instances
+    if (scrollTriggerRef.current) {
+      scrollTriggerRef.current.kill();
+    }
+
+    // Ensure initial color is white
+    gsap.set(letters, { color: "#ffffff" });
+
+    // Create a timeline for our animations
+    const tl = gsap.timeline({
+      paused: true,
+      onComplete: () => setIsAnimating(false),
+      onReverseComplete: () => setIsAnimating(false),
+    });
+
+    // Add the color animation to the timeline
+    tl.to(letters, {
+      color: "#FF4066",
+      ease: "power1.inOut",
+      stagger: {
+        each: 0.02,
+        from: "start",
+      },
+      duration: 1.5,
+    });
+
+    // Create a unique ScrollTrigger for this section
+    scrollTriggerRef.current = ScrollTrigger.create({
+      trigger: section,
+      start: "center center", // trigger when h1 is centered in viewport
+      end: "+=100%", // adjust based on your desired scroll duration
+      pin: true,
+      pinSpacing: true,
+      id: "typography-pin",
+      scrub: 0.3,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        if (self.getVelocity() !== 0 || self.progress > 0) {
+          tl.progress(self.progress);
+          setIsAnimating(self.progress > 0 && self.progress < 1);
+        }
+      },
+    });
+
+    return () => {
+      // Clean up on component unmount
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+      tl.kill();
+    };
+  }, []);
+
   return (
     <div className="hero">
       <section className="hidden min-[600px]:block">
-        {/* <video
+        <video
           src={LineArt}
-          className="w-full mix-blend-screen absolute z-50"
+          className="w-full mix-blend-screen absolute z-40"
           autoPlay
           muted
           loop
-        /> */}
-        <img className="relative" src={Banner} />
+        />
+        <img
+          src={Banner}
+          width={1600}
+          height={900}
+          className="w-full h-auto relative"
+          alt="Hero banner"
+        />
       </section>
       <section className="relative text-white block min-[600px]:hidden">
         <div className="w-full flex flex-col justify-center h-[100vh] md:[h-80vh] items-center">
@@ -44,6 +122,30 @@ const Hero = () => {
             />
           </div>
         </div>
+      </section>
+      <section ref={typoRef}>
+        <div
+        ref={sectionRef}
+        className="relative flex items-center justify-center"
+      >
+        <div
+          ref={containerRef}
+          className="text-white w-11/12 md:w-11/12 lg:w-11/12 2xl:w-10/12 mx-auto text-center z-40"
+        >
+          <h1 className="text-2xl md:text-2xl lg:text-3xl xl:text-4xl tracking-normal md:leading-relaxed">
+            {chars.map((char, i) => (
+              <span key={i} className="char">
+                {char}
+              </span>
+            ))}
+          </h1>
+          <img
+            src={Down}
+            alt="down"
+            className="mx-auto hidden lg:block my-2 h-36 md:h-60"
+          />
+        </div>
+      </div>
       </section>
     </div>
   );

@@ -82,14 +82,14 @@ like humans`;
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-[90vh] flex items-center justify-center"
+      className="relative flex items-center justify-center"
     >
           
       <div
         ref={containerRef}
-        className="text-white w-11/12 md:w-11/12 lg:w-10/12 2xl:w-10/12 mx-auto text-center z-40"
+        className="text-white w-11/12 md:w-11/12 lg:w-11/12 2xl:w-10/12 mx-auto text-center z-40"
       >
-        <h1 className="text-2xl md:text-2xl lg:text-4xl mt-0 lg:mt-[20vh] 2xl:mt-[30vh] tracking-normal md:leading-relaxed">
+        <h1 className="text-2xl md:text-2xl lg:text-3xl xl:text-4xl tracking-normal md:leading-relaxed">
     
           {chars.map((char, i) => (
             <span key={i} className="char">

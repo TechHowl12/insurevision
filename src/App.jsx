@@ -44,11 +44,11 @@ function App() {
         scrollToLeadership={scrollToLeadership}
         scrollToEnviromatics={scrollToEnviromatics}
       />
-      <Hero />
+      <Hero typoRef={typoRef} />
 
-      <div ref={typoRef}>
+      {/* <div ref={typoRef}>
         <Typography />
-      </div>
+      </div> */}
 
       <div className="block lg:hidden">
         <MobileImageZoom />
@@ -65,15 +65,16 @@ function App() {
         <LeadershipTestimonial />
       </div>
 
-      <div ref={formRef}>
+      <div ref={formRef} className="xl:h-screen 2xl:h-[90vh] relative flex flex-col justify-between">
         <ContactForm />
+        <div className="">
+          <Footer
+          scrollToTypography={scrollToTypography}
+          scrollToLeadership={scrollToLeadership}
+          scrollToEnviromatics={scrollToEnviromatics}
+        />
+        </div>
       </div>
-
-      <Footer
-        scrollToTypography={scrollToTypography}
-        scrollToLeadership={scrollToLeadership}
-        scrollToEnviromatics={scrollToEnviromatics}
-      />
     </>
   );
 }

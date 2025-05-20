@@ -100,24 +100,24 @@ const ContactForm = ({ formRef: sectionFormRef }) => {
   };
 
   return (
-    <div ref={sectionFormRef} className="w-full flex items-center justify-center p-4 lg:p-8">
-      <div className="w-full sm:w-10/12 flex flex-col lg:flex-row items-center gap-8 lg:gap-16 py-8 lg:py-12">
+    <div ref={sectionFormRef} className="w-full flex items-center justify-center p-4 lg:px-8">
+      <div className="w-full md:w-11/12 lg:w-10/12 flex flex-col md:flex-row items-center gap-8 lg:gap-16 py-8 lg:py-12">
         {/* Left Section */}
         <div className="w-full text-left lg:px-0 px-auto">
-          <div className="space-y-3">
-            <p className="text-primary text-lg font-medium uppercase tracking-wider">CONTACT US</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl text-white leading-tight">
+          <div className="space-y-1 xl:space-y-3">
+            <p className="text-primary text-sm xl:text-lg font-medium uppercase tracking-wider">CONTACT US</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-[45px] xl:text-5xl 2xl:text-6xl text-white leading-tight">
               Deploying Across<br />The Eco-System
             </h1>
-            <p className="text-gray-300 mt-4 text-sm sm:text-base">
+            <p className="text-gray-300 mt-3 xl:mt-4 text-sm md:text-[14px] xl:text-base">
               Join the future with us now. Get in touch<br />
               to know more
             </p>
           </div>
           
-          <div className="w-full flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mt-3">
-            <p className="text-sm text-gray-300 whitespace-nowrap">WHO ARE YOU ?</p>
-            <div className="relative w-full sm:w-[55%]">
+          <div className="w-full flex flex-col lg:flex-row items-start lg:items-center gap-2 sm:gap-3 mt-3">
+            <p className="text-sm md:text-xs xl:text-sm text-gray-300 whitespace-nowrap">WHO ARE YOU ?</p>
+            <div className="relative w-full lg:w-[90%] xl:w-[55%]">
               <button
                 onClick={toggleDropdown}
                 name="selectedOption"
@@ -155,7 +155,7 @@ const ContactForm = ({ formRef: sectionFormRef }) => {
         
         {/* Right Section - Form */}
         <div className="w-full lg:px-0">
-          <form ref={emailFormRef} onSubmit={handleSubmit} className="w-full space-y-5">
+          <form ref={emailFormRef} onSubmit={handleSubmit} className="w-full space-y-3 md:space-y-2 xl:space-y-3">
             <input
               type="text"
               name="name"
@@ -224,7 +224,7 @@ const ContactForm = ({ formRef: sectionFormRef }) => {
             
             <button
               type="submit"
-              className="w-full text-white text-sm font-medium rounded-full py-4 bg-[#ff4066] hover:bg-white hover:text-[#ff4066] transition-all duration-300"
+              className="w-full text-white text-sm font-medium rounded-full py-3 xl:py-4 bg-[#ff4066] hover:bg-white hover:text-[#ff4066] transition-all duration-300"
               disabled={loading}
             >
               {loading ? 'Submitting...' : 'SUBMIT'}

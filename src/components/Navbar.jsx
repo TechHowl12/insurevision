@@ -9,29 +9,24 @@ const Navbar = ({
   scrollToEnviromatics,
   scrollToLeadership,
 }) => {
-  const [isScrolled, setIsScrolled] = useState(false); // To track scroll state
-  const [showMenu, setShowMenu] = useState(false); // For hamburger menu toggle
+  const [isScrolled, setIsScrolled] = useState(false); // For buttons
+  const [showLogo, setShowLogo] = useState(true); // Separate state for logo
+  const [showMenu, setShowMenu] = useState(false); // Hamburger menu toggle
 
-  // Scroll event handler to detect scroll position
+  // Scroll logic
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50); // For buttons
+      setShowLogo(scrollY <= 50);  // For logo only
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
-    setIsScrolled(!isScrolled);
-    setShowMenu(!showMenu); // Toggle the menu visibility on click
+    setShowMenu((prev) => !prev);
   };
 
   return (
@@ -46,11 +41,11 @@ const Navbar = ({
             alt="Menu"
           />
 
-          {/* Desktop Left Buttons (Hide on scroll) */}
+          {/* Desktop Left Buttons */}
           <div
             className={`space-x-3 transition-all hidden sm:flex duration-500 transform ${
-              isScrolled
-                ? "opacity-0 -translate-x-20 "
+              isScrolled && !showMenu
+                ? "opacity-0 -translate-x-20"
                 : "opacity-100 translate-x-0"
             }`}
           >
@@ -75,26 +70,26 @@ const Navbar = ({
           </div>
         </div>
 
-        {/* Center Logo (Hide on scroll) */}
+        {/* Center Logo */}
         <img
           src={Logo}
           className={`absolute md:w-28 lg:w-auto left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
-            isScrolled ? "opacity-0" : "opacity-100"
+            showLogo ? "opacity-100" : "opacity-0"
           }`}
           alt="Logo"
         />
 
         {/* Desktop Right Buttons */}
-        <div className={`gap-x-3 hidden sm:flex `}>
+        <div className="gap-x-3 hidden sm:flex">
           <div
             className={`space-x-3 duration-500 transform transition-all ${
-              isScrolled
-                ? "opacity-0 translate-x-20"
-                : "opacity-100 translate-x-0"
+              isScrolled && !showMenu
+                ? "opacity-0 translate-x-20 pointer-events-none"
+                : "opacity-100 translate-x-0 pointer-events-auto"
             }`}
           >
             <a
-              href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
+              href="https://www.linkedin.com/company/insurevision-ai"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -102,13 +97,10 @@ const Navbar = ({
                 LinkedIn
               </button>
             </a>
-            {/* <button className="rounded-full bg-[#0E000b] text-xs w-24 border border-primary text-white hover:bg-white hover:text-[#FF4066] py-2 transition-all duration-300">
-              Blogs
-            </button> */}
           </div>
           <button
             onClick={scrollToForm}
-            className="cursor-pointer rounded-full md:text-[10px] lg:text-xs appearance-none bg-[#FF4066] md:px-5 lg:px-8 md:py-1 lg:py-2 text-white uppercase hover:bg-[#fff] hover:text-[#FF4066] transition-all duration-300"
+            className="cursor-pointer rounded-full text-[10px] lg:text-xs appearance-none bg-[#FF4066] px-5 lg:px-8 md:py-1 lg:py-2 text-white uppercase hover:bg-[#fff] hover:text-[#FF4066] transition-all duration-300"
           >
             get in touch
           </button>
@@ -137,7 +129,7 @@ const Navbar = ({
             Leadership
           </button>
           <a
-            href="https://www.linkedin.com/company/insurevision-ai" // replace with your actual LinkedIn URL
+            href="https://www.linkedin.com/company/insurevision-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full flex justify-center items-center bg-[#0E000b] text-sm border border-primary text-white py-2 hover:bg-white hover:text-primary transition-all duration-300"

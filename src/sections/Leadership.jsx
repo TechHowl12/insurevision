@@ -237,7 +237,7 @@ export default function LeadershipTestimonial(){
           id: "leadership-scrolltrigger-desktop",
           trigger: section,
           start: "top top",
-          end: "+=400%", // More scroll space for desktop
+          end: "+=200%", // More scroll space for desktop
           pin: true,
           pinSpacing: true,
           scrub: 0.5,
@@ -381,7 +381,7 @@ export default function LeadershipTestimonial(){
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen w-full lg:w-10/12 flex items-center justify-center text-white relative overflow-hidden mx-auto"
+      className="min-h-screen w-full xl:w-10/12 flex items-center justify-center text-white relative overflow-hidden mx-auto"
     >
       <div 
         ref={containerRef}
@@ -539,15 +539,15 @@ export default function LeadershipTestimonial(){
         </div>
 
         {/* Original desktop layout - hide on mobile */}
-        <div className="hidden lg:flex lg:flex-row lg:w-full lg:pr-30 items-center justify-center">
+        <div className="hidden lg:flex lg:flex-row lg:w-full lg:pr-20 xl:pr-30 items-center justify-center">
           {/* Left side - Title and Bio */}
           <div className="w-full lg:w-[140%] flex flex-col items-center justify-center z-10 lg:ml-22 lg:mt-40">
-            <h1 className="leadership-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider">LEADERSHIP</h1>
+            <h1 className="leadership-title text-5xl xl:text-6xl font-bold tracking-wider">LEADERSHIP</h1>
 
             {/* Bio with border box that's attached to the image */}
             <div className="bio-container w-full lg:ml-10 ml-20 mt-16 flex justify-center">
-              <div className="bio-box relative flex justify-center items-center pr-2 border-t border-l border-b border-primary text-center ml-2 lg:ml-4"
-                style={{ width: "455px", height: "160px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
+              <div className="bio-box lg:w-[300px] xl:w-[455px] relative flex justify-center items-center pr-2 border-t border-l border-b border-primary text-center ml-2 lg:ml-4"
+                style={{ height: "160px", minHeight: "180px", maxHeight: "180px", textAlign: "right" }}
               >
                 <p className="bio-text text-xs px-4 text-right sm:text-sm text-gray-300" key={`bio-${activeMember}`}>{currentMember.bio}</p>
               </div>
@@ -630,11 +630,11 @@ export default function LeadershipTestimonial(){
           </div>
 
           {/* Right side - Name, Title, Social */}
-          <div className="w-full flex lg:m-20 flex-col ml-[2%] lg:mr[5%] items-center lg:items-start justify-center z-10">
+          <div className="w-full flex lg:m-10 xl:m-20 flex-col ml-[2%] xl:mr[5%] items-center lg:items-start justify-center z-10">
             <div className="name-title text-center lg:text-left mt-6 lg:mt-56 mb-4 lg:mb-8" key={`name-${activeMember}`}>
               <div className="text-xs lg:text-sm text-primary mb-1 lg:mb-2">MEET</div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
+              <h2 className="text-2xl sm:text-3xl 2xl:text-4xl font-bold">{currentMember.name.split(" ")[0]}</h2>
+              <h2 className="text-2xl sm:text-3xl 2xl:text-4xl font-bold">{currentMember.name.split(" ")[1]}</h2>
               <div className="mt-2 lg:mt-4 text-xs lg:text-sm text-gray-400">{currentMember.title}</div>
             </div>
 
@@ -665,7 +665,7 @@ export default function LeadershipTestimonial(){
             </div>
 
             {/* Vertical arrows - Now positioned to the right */}
-            <div className="arrows absolute gap-4 right-8 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
+            <div className="arrows absolute gap-4 right-8 lg:top-[51%] xl:top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-12">
               <button
                 className="text-gray-400 hover:text-white transition-colors"
                 style={{ margin: "2px" }}
